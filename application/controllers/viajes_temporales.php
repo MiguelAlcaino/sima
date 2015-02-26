@@ -71,7 +71,7 @@
         'destino'   =>              $this->input->post("destino"),
         'numero_contenedor' =>      $this->input->post("numero_contenedor"),
         'notas_adicionales' =>      $this->input->post("notas_adicionales"),
-        'numero_guia'   =>          $this->input->post("numero_guia");
+        'numero_guia'   =>          $this->input->post("numero_guia")
     );
     
     

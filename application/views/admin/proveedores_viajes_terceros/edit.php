@@ -41,7 +41,9 @@
                     <input type="hidden" id="contador_filas" name="contador_filas" />
 
                     <p><label>Nombre del proveedor</label><br /> <input value="<?php echo $data[0]['nombre_proveedor']?>" type="text" name="nombre_proveedor" size="55" class="text" ></p>
-                    
+
+                      <p><label>RUT</label><br /> <input value="<?php echo $data[0]['rut']?>"maxlength="10" type="text" name="rut" size="55" class="text" ></p>
+
                     <p><label>Razón social</label><br /> <input value="<?php echo $data[0]['razon_social_proveedor']?>" type="text" name="razon_social_proveedor" size="55" class="text" ></p>
                     
                     <p><label>Dirección de contacto</label><br /> <input value="<?php echo $data[0]['direccion_contacto']?>" type="text" name="direccion_contacto" size="55" class="text" ></p>

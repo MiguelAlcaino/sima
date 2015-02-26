@@ -23,7 +23,8 @@ class Proveedores_viajes_terceros extends CI_Controller
       'razon_social_proveedor'  => $this->input->post('razon_social_proveedor'),
       'direccion_contacto'      => $this->input->post('direccion_contacto'),
       'persona_de_contacto'     => $this->input->post('persona_de_contacto'),
-      'telefono'                => $this->input->post('telefono')
+      'telefono'                => $this->input->post('telefono'),
+      'rut'                     => $this->input->post('rut')
     );
     
     $id_proveedor=$this->proveedores_viajes_terceros_model->add($array_datos);
@@ -61,7 +62,8 @@ class Proveedores_viajes_terceros extends CI_Controller
       'razon_social_proveedor'  => $this->input->post('razon_social_proveedor'),
       'direccion_contacto'      => $this->input->post('direccion_contacto'),
       'persona_de_contacto'     => $this->input->post('persona_de_contacto'),
-      'telefono'                => $this->input->post('telefono')
+      'telefono'                => $this->input->post('telefono'),
+      'rut'                     => $this->input->post('rut')
     );
     
     $this->proveedores_viajes_terceros->update($id, $array_datos);

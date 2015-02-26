@@ -10,19 +10,19 @@
             <ul>
             	
                     
-                    <li><a href="clientes" class="tip" title="Clientes"><img src="public/admin/images/icondock/client.png" alt="Contacts" /><br />Clientes</a></li>
+                    <li><a href="<?php echo site_url('clientes')?>" class="tip" title="Clientes"><img src="<?php echo base_url('public/admin/images/icondock/client.png')?>" alt="Contacts" /><br />Clientes</a></li>
                     
-                    <li><a href="proveedores" class="tip" title="Proveedores"><img src="public/admin/images/icondock/provider.png" alt="Proveedores" /><br />Proveedores</a></li>
+                    <li><a href="<?php echo site_url('proveedores')?>" class="tip" title="Proveedores"><img src="<?php echo base_url('public/admin/images/icondock/provider.png')?>" alt="Proveedores" /><br />Proveedores</a></li>
                     
-                    <li><a href="conductores" class="tip" title="Conductores"><img src="public/admin/images/icondock/driver.png" alt="Conductores" /><br />Conductores</a></li>
+                    <li><a href="<?php echo site_url('conductores')?>" class="tip" title="Conductores"><img src="<?php echo base_url('public/admin/images/icondock/driver.png')?>" alt="Conductores" /><br />Conductores</a></li>
                     
-                    <li><a href="productos" class="tip" title="Productos"><img src="public/admin/images/icondock/product.png" alt="Productos" /><br />Productos</a></li>
+                    <li><a href="<?php echo site_url('productos')?>" class="tip" title="Productos"><img src="<?php echo base_url('public/admin/images/icondock/product.png')?>" alt="Productos" /><br />Productos</a></li>
                     
-                    <li><a href="servicios" class="tip" title="Services"><img src="public/admin/images/icondock/service.png" alt="Servicios" /><br />Servicios</a></li>
+                    <li><a href="<?php echo site_url('servicios')?>" class="tip" title="Services"><img src="<?php echo base_url('public/admin/images/icondock/service.png')?>" alt="Servicios" /><br />Servicios</a></li>
                     
-                    <li><a href="viajes" class="tip" title="Viajes"><img src="public/admin/images/icondock/truck2.png" alt="Viajes" /><br />Viajes</a></li>
+                    <li><a href="<?php echo site_url('viajes')?>" class="tip" title="Viajes"><img src="<?php echo base_url('public/admin/images/icondock/truck2.png')?>" alt="Viajes" /><br />Viajes</a></li>
                     
-                    <li><a href="facturas" class="tip" title="Facturas"><img src="public/admin/images/icondock/doc.png" alt="Facturas" /><br />Facturas</a></li>
+                    <li><a href="<?php echo site_url('facturas')?>" class="tip" title="Facturas"><img src="<?php echo base_url('public/admin/images/icondock/doc.png')?>" alt="Facturas" /><br />Facturas</a></li>
                     
                     
                     
