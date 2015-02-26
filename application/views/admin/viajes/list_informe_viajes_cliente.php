@@ -1,5 +1,5 @@
-    <link rel="stylesheet" type="text/css" href="public/admin/jquery-ui-1.11.2.custom/jquery-ui.css"/>
-    <script type="text/javascript" src="public/admin/jquery-ui-1.11.2.custom/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo site_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.css')?>"/>
+    <script type="text/javascript" src="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.js')?>"></script>
 
 <div class="block">
 
@@ -128,8 +128,8 @@
                   html += '<td style="text-align:left">'+item.destino+'</td>';
                   html += '<td>'+item.valor_viaje+'</td>';
                   html += '<td>';
-                  html += '<a href="viajes/editar/'+item.id+'" class="tip" title="Editar"><img src="public/admin/images/bedit.png" /></a>&nbsp;';
-                  html += '<a href="viajes/eliminar/'+item.id+'" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="public/admin/images/bdelete.png" /></a>&nbsp; </td>';
+                  html += '<a href="<?php echo site_url('viajes/editar')?>/'+item.id+'" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a>&nbsp;';
+                  html += '<a href="<?php echo site_url('viajes/eliminar')?>/'+item.id+'" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="<?php echo base_url('public/admin/images/bdelete.png')?>" /></a>&nbsp; </td>';
                   
                   html += '</tr>';
                   
@@ -159,7 +159,7 @@
       
       var dates = $('#fechai, #fechaf').datepicker({
       showOn: "button",
-      buttonImage: "public/admin/images/calendar.png",
+      buttonImage: "<?php echo base_url('public/admin/images/calendar.png')?>",
       buttonImageOnly: true,
       maxDate: '+3M',
       dateFormat: 'yy-mm-dd',

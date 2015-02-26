@@ -31,12 +31,12 @@
 					data: "q="+q+"&fi="+fi+"&ff="+ff,
 					type: "POST",
 					dataType: "json",
-					url: "ajax/presupuestos_ajax/",
+					url: "<?php echo site_url('ajax/presupuestos_ajax')?>",
 						success: function(data){ 
 							if(data.length > 0){
 								var html ='', sum=0;
 								$.each(data, function(i,item){
-									html += '<tr class="rows"><td></td><td>'+item.numero+'</td><td>'+item.nombre_comercial+'</td><td style="text-align:right">'+item.monto+'</td><td style="text-align:center">'+item.fecha+'</td><td><a href="presupuestos/editar/'+item.id+'" class="tip" title="Editar"><img src="public/admin/images/bedit.png" /></a>&nbsp; <a href="presupuestos/eliminar/'+item.id+'" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="public/admin/images/bdelete.png" /></a>&nbsp; <a href="presupuestos/imprimir/'+item.id+'" class="tip"  title="Imprimir"><img src="public/admin/images/pdf.png" /></a></td></tr>';
+									html += '<tr class="rows"><td></td><td>'+item.numero+'</td><td>'+item.nombre_comercial+'</td><td style="text-align:right">'+item.monto+'</td><td style="text-align:center">'+item.fecha+'</td><td><a href="<?php echo site_url('presupuestos/editar')?>/'+item.id+'" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a>&nbsp; <a href="<?php echo site_url('presupuestos/eliminar')?>/'+item.id+'" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="<?php echo base_url('public/admin/images/bdelete.png')?>" /></a>&nbsp; <a href="<?php echo site_url('presupuestos/imprimir')?>/'+item.id+'" class="tip"  title="Imprimir"><img src="<?php echo base_url('public/admin/images/pdf.png')?>" /></a></td></tr>';
 									sum = sum + parseFloat(item.monto);
 								});
 								
@@ -65,7 +65,7 @@
 			
 			var dates = $('#fechai, #fechaf').datepicker({
 			showOn: "button",
-			buttonImage: "public/admin/images/calendar.png",
+			buttonImage: "<?php echo base_url('public/admin/images/calendar.png')?>",
 			buttonImageOnly: true,
 			maxDate: '+3M',
 			dateFormat: 'yy-mm-dd',
@@ -137,8 +137,8 @@
         
     </div>
     
-    <link rel="stylesheet" type="text/css" href="public/admin/jqueryui/css/smoothness/jquery-ui-1.8.16.custom.css"/>
-	<script type="text/javascript" src="public/admin/jqueryui/js/jquery-ui-1.8.16.custom.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/admin/jqueryui/css/smoothness/jquery-ui-1.8.16.custom.css')?>"/>
+	<script type="text/javascript" src="<?php echo base_url('public/admin/jqueryui/js/jquery-ui-1.8.16.custom.min.js')?>"></script>
 
     <div class="block_content tab_content  <?php if($tab != 'nuevo') echo 'hide'?>" id="new">
 		<script type="text/javascript">
@@ -222,7 +222,7 @@
 					errorElement : 'span',
 					submitHandler: function(form) {
 						if($("#detalle tr").eq(0).hasClass("nothing")){
-							alert("Ustede debe ingresar un detalle para el presupuesto");
+							alert("Usted debe ingresar un detalle para el presupuesto");
 							return false;
 						}
 						

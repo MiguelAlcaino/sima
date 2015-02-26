@@ -1,8 +1,8 @@
-<link rel="stylesheet" type="text/css" href="public/admin/jquery-ui-1.11.2.custom/jquery-ui.css"/>
-<link rel="stylesheet" type="text/css" href="public/admin/datetimepicker/jquery.datetimepicker.css"/ >
-<script src="public/admin/jquery-ui-1.11.2.custom/jquery-ui.js"></script>
-<script src="public/admin/datetimepicker/jquery.datetimepicker.js"></script>
-<script src="public/admin/autoNumeric/autoNumeric.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.css')?>"/>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/admin/datetimepicker/jquery.datetimepicker.css')?>"/ >
+<script src="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.js')?>"></script>
+<script src="<?php echo base_url('public/admin/datetimepicker/jquery.datetimepicker.js')?>"></script>
+<script src="<?php echo base_url('public/admin/autoNumeric/autoNumeric.js')?>"></script>
 <style>
   #primero_numero_contenedor{
     width: 46px;
@@ -45,7 +45,7 @@
             <?php echo validation_errors(); ?>
             </div>
         <?php } ?>
-      <form id="form_viaje" method="post" action="viajes_proveedores_terceros/add" enctype="multipart/form-data">
+      <form id="form_viaje" method="post" action="<?php echo site_url('viajes_proveedores_terceros/add')?>" enctype="multipart/form-data">
         
                  
                 <div style="float:left; width:600px">
@@ -210,7 +210,7 @@
                       $('#button_form_box').click(function(){
                         $('#form_viaje').submit();
                       });
-                      </script>
+
                     </script>
                   </div>
                   <input type="submit" class="submit mid" value="Actualizar" />

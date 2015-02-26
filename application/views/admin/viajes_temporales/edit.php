@@ -1,8 +1,8 @@
-<link rel="stylesheet" type="text/css" href="public/admin/jquery-ui-1.11.2.custom/jquery-ui.css"/>
-<link rel="stylesheet" type="text/css" href="public/admin/datetimepicker/jquery.datetimepicker.css"/ >
-<script type="text/javascript" src="public/admin/jquery-ui-1.11.2.custom/jquery-ui.js"></script>
-<script src="public/admin/datetimepicker/jquery.datetimepicker.js"></script>
-<script src="public/admin/autoNumeric/autoNumeric.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.css')?>"/>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/admin/datetimepicker/jquery.datetimepicker.css')?>"/ >
+<script src="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.js')?>"></script>
+<script src="<?php echo base_url('public/admin/datetimepicker/jquery.datetimepicker.js')?>"></script>
+<script src="<?php echo base_url('public/admin/autoNumeric/autoNumeric.js')?>"></script>
 
 <style>
   #primero_numero_contenedor{
@@ -96,7 +96,7 @@
                         $('#form_viaje').submit();
                       });
                       </script>
-                    </script>
+
                   </div>
                   <input type="submit" class="submit mid" name="agregar" value="Actualizar" />
                   
@@ -245,14 +245,14 @@
         //});
         
         $("#convertir_propio").click(function() {
-          $('<a href="ajax/add_conductor_propio_a_viaje_temporal/<?php echo $data[0]['id']?>"></a>').facebox({
+          $('<a href="<?php echo site_url('ajax/add_conductor_propio_a_viaje_temporal/'.$data[0]['id'])?>"></a>').facebox({
             overlayShow: true
           }).click();
 
         });
         
         $("#convertir_tercero").click(function() {
-          $('<a href="ajax/add_conductor_tercero_a_viaje_temporal/<?php echo $data[0]['id']?>"></a>').facebox({
+          $('<a href="<?php echo site_url('ajax/add_conductor_tercero_a_viaje_temporal/'.$data[0]['id'])?>"></a>').facebox({
             overlayShow: true
           }).click();
 
