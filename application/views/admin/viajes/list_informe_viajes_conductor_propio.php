@@ -114,7 +114,7 @@
           data: "q="+q+"&fi="+fi+"&ff="+ff+"&t="+t,
           type: "POST",
           dataType: "json",
-          url: "ajax/list_viajes_ajax",
+          url: "<?php echo site_url('ajax/list_viajes_ajax')?>",
             success: function(data){ 
               if(data.length > 0){
                 var html ='', sum=0;

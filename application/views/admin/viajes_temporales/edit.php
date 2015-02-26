@@ -120,7 +120,7 @@
         $( "#clientes" ).autocomplete({
           source: function( request, response ) {
             $.ajax({
-              url: "ajax/clientes",
+              url: "<?php echo site_url('ajax/clientes')?>",
               type:"POST",
               dataType: "json",
               data: {
