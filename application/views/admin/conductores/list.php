@@ -77,7 +77,7 @@
           data: "q="+q+"&fi="+fi+"&ff="+ff+"&t="+t,
           type: "POST",
           dataType: "json",
-          url: "ajax/list_conductores_ajax",
+          url: "<?php echo site_url('ajax/list_conductores_ajax')?>",
             success: function(data){ 
               if(data.length > 0){
                 var html ='', sum=0;
@@ -86,8 +86,8 @@
                   html += '<td>'+item.nombre+'</td>';
                   html += '<td>'+item.apellido+'</td>';
                   html += '<td>';
-                  html += '<a href="conductores/editar/'+item.id+'" class="tip" title="Editar"><img src="public/admin/images/bedit.png" /></a>&nbsp;';
-                  html += '<a href="conductores/eliminar/'+item.id+'" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="public/admin/images/bdelete.png" /></a>&nbsp; </td>';
+                  html += '<a href="<?php echo site_url('conductores/editar')?>/'+item.id+'" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a>&nbsp;';
+                  html += '<a href="<?php echo site_url('conductores/eliminar')?>/'+item.id+'" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="<?php echo base_url('public/admin/images/bdelete.png')?>" /></a>&nbsp; </td>';
                   
                   html += '</tr>';
                   

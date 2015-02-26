@@ -78,7 +78,8 @@
                     <p><label>Valor del viaje</label><br /> <input value="<?php echo $data[0]['valor_viaje']?>"  id="valor_viaje_num" type="text" name="valor_viaje_num" size="55" class="text" >
                       <input value="<?php echo $data[0]['valor_viaje']?>" id="valor_viaje" type="hidden" name="valor_viaje">
                     </p>
-                    
+
+                    <p><label>Número guía</label><br /> <input value="<?php echo $data[0]['numero_guia']?>" maxlength="10" type="text" name="numero_guia" size="55" class="text" ></p>
                    
                     <p><label>Notas adicionales </label><br /> <textarea class="text m" name="notas_adicionales"><?php echo $data[0]['notas_adicionales']?></textarea></p>
                     

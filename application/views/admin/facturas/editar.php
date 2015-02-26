@@ -8,10 +8,10 @@
         
         <ul>
             
-            <li><a href="facturas/">Pendientes</a></li>
-            <li><a href="facturas/pagadas">Pagadas</a></li>
-            <li><a href="facturas/nueva">Crear Factura</a></li>
-            <li><a href="facturas/imprimir/<?php echo $data[0]['id_factura'] ?>">Imprimir</a></li>
+            <li><a href="<?php echo site_url('facturas')?>">Pendientes</a></li>
+            <li><a href="<?php echo site_url('facturas/pagadas')?>">Pagadas</a></li>
+            <li><a href="<?php echo site_url('facturas/nueva')?>">Crear Factura</a></li>
+            <li><a href="<?php echo site_url('facturas/imprimir/'.$data[0]['id_factura']) ?>">Imprimir</a></li>
         </ul>
     </div>		
 
@@ -22,7 +22,7 @@
             <?php echo validation_errors(); ?>
             </div>
         <?php } ?>
-			<form method="post" action="facturas/actualizar/" enctype="multipart/form-data"> 
+			<form method="post" action="<?php echo site_url('facturas/actualizar')?>" enctype="multipart/form-data">
             	<input type="hidden" id="id_factura" name="id_factura" value="<?php echo $data[0]['id_factura'] ?>" />
             	<div style="width:50%; float:left">
                 	<p><label>Número Factura</label><br /> <input type="text" name="numero" class="text required"  value="<?php echo $data[0]['numero'] ?>"></p>
@@ -48,6 +48,7 @@
                     </thead>
                     <tbody id="detalle">
                     	<?php
+                        $total = 0;
 						foreach($detail as $k)
 						{
 							$precio_t = ($k['precio'] * $k['cantidad']);

@@ -7,14 +7,14 @@
         <h2>Facturas</h2>
         
         <ul>
-        	<li><a href="facturas">Pendientes</a></li>
-            <li><a href="facturas/pagadas">Pagadas</a></li>            
-            <li class="active"><a href="facturas/nueva">Crear Factura</a></li>
+        	<li><a href="<?php echo site_url('facturas')?>">Pendientes</a></li>
+            <li><a href="<?php echo site_url('facturas/pagadas')?>">Pagadas</a></li>
+            <li class="active"><a href="<?php echo site_url('facturas/nueva')?>">Crear Factura</a></li>
         </ul>
     </div>		
     
-    <link rel="stylesheet" type="text/css" href="public/admin/jquery-ui-1.11.2.custom/jquery-ui.css"/>
-	  <script type="text/javascript" src="public/admin/jquery-ui-1.11.2.custom/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.css')?>"/>
+	  <script type="text/javascript" src="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.js')?>"></script>
 
     <div class="block_content" id="new">
 				
@@ -24,7 +24,7 @@
             <?php echo validation_errors(); ?>
             </div>
         <?php } ?>
-			<form method="post" action="facturas/agregar/" enctype="multipart/form-data" id="form_new_p" name="form_new_p"> 
+			<form method="post" action="<?php echo site_url('facturas/agregar')?>" enctype="multipart/form-data" id="form_new_p" name="form_new_p">
             	<input type="hidden" id="id_cliente" name="id_cliente" />
             	<div style="width:50%; float:left">
                 	<p><label>Número Factura</label><br /> <input type="text" name="numero" class="text required" ></p>
@@ -118,7 +118,7 @@
         $( "#clientes" ).autocomplete({
           source: function( request, response ) {
             $.ajax({
-              url: "ajax/clientes",
+              url: "<?php echo site_url('ajax/clientes')?>",
               type:"POST",
               dataType: "json",
               data: {
@@ -158,7 +158,7 @@
         });
         
         $("#buscar_prod_serv").click(function() {
-          $('<a href="ajax/search_prod_serv"></a>').facebox({
+          $('<a href="<?php echo site_url('ajax/search_prod_serv')?>"></a>').facebox({
             overlayShow: true
           }).click();
 

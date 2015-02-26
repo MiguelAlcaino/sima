@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.css')?>"/>
+<script type="text/javascript" src="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.js')?>"></script>
 <div class="block">
 
     <div class="block_head">
@@ -7,9 +9,9 @@
         <h2>Facturas</h2>
         
         <ul>
-        	<li><a href="facturas">Pendientes</a></li>
-            <li class="active"><a href="facturas/pagadas">Pagadas</a></li>            
-            <li><a href="facturas/nueva">Crear Factura</a></li>
+        	<li><a href="<?php echo site_url('facturas')?>">Pendientes</a></li>
+            <li class="active"><a href="<?php echo site_url('facturas/pagadas')?>">Pagadas</a></li>
+            <li><a href="<?php echo site_url('facturas/nueva')?>">Crear Factura</a></li>
         </ul>
         <ul>
         	<li>Del: <input type="text" id="fechai"  class="date" value="<?php echo date("Y-m-d",strtotime('-1 month',time()))?>"/></li>
@@ -24,61 +26,7 @@
             </select>&nbsp; <input type="button" value="Buscar" class="" id="btn_search" /></li>
         </ul>
     </div>
-    <script type="text/javascript">
-    	$(document).ready(function(){
-			
-			function search_factura(q, fi, ff){
-				$.ajax({
-					data: "q="+q+"&fi="+fi+"&ff="+ff+"&t="+1,
-					type: "POST",
-					dataType: "json",
-					url: "ajax/facturas_ajax/",
-						success: function(data){ 
-							if(data.length > 0){
-								var html ='', sum=0;
-								$.each(data, function(i,item){
-									html += '<tr class="rows"><td></td><td>'+item.numero+'</td><td>'+item.nombre_comercial+'</td><td style="text-align:right">'+item.monto+'</td><td style="text-align:center">'+item.fecha+'</td><td><a href="facturas/editar/'+item.id+'" class="tip" title="Editar"><img src="public/admin/images/bedit.png" /></a>&nbsp; <a href="facturas/eliminar/'+item.id+'" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="public/admin/images/bdelete.png" /></a>&nbsp; <a href="facturas/imprimir/'+item.id+'" class="tip"  title="Imprimir"><img src="public/admin/images/pdf.png" /></a></td></tr>';
-									
-									sum = sum + parseFloat(item.monto);
-									
-								});
-								
-								$(".total_pe").html("<b>"+sum.toFixed(2)+"</b>");
-								$(".sortable_list_pen tbody").html(html);
-								$(".sortable_list_pen").trigger("update");
-								var sorting = [[1,0]]; 
-								$(".sortable_list_pen").trigger("sorton",[sorting]); 
-							}else{
-								$(".total_pe").html("<b>0.00</b>");
-								$(".sortable_list_pen tbody").html("");
-							}
-						}
-				  });	
-			 }
-	 		
-			search_factura($("#empresa").find("option:selected").val(),$("#fechai").val(),$("#fechaf").val());
-			
-			$("#btn_search").click(function(){
-				search_factura($("#empresa").find("option:selected").val(),$("#fechai").val(),$("#fechaf").val());
-			});
-			
-			
-			var dates = $('#fechai, #fechaf').datepicker({
-			showOn: "button",
-			buttonImage: "public/admin/images/calendar.png",
-			buttonImageOnly: true,
-			maxDate: '+3M',
-			dateFormat: 'yy-mm-dd',
-			onSelect: function(selectedDate) {
-				var option = this.id == "fechai" ? "minDate" : "maxDate";
-				var instance = $(this).data("datepicker");
-				var date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
-				dates.not(this).datepicker("option", option, date);
-			}
-		});
-			
-		});
-    </script>
+
     <div class="block_content">
     	<?php 
 		
@@ -115,9 +63,7 @@
             
         </form>
         
-        <?php 
-		if(count($data_p) > 0){
-		?>
+       
         
 		
 		<script type="text/javascript">
@@ -130,15 +76,65 @@
 				
 			});
         </script>
-        <?php 
-		}
-		?>
+      
         
     </div>
-    
-    
-    <link rel="stylesheet" type="text/css" href="public/admin/jqueryui/css/smoothness/jquery-ui-1.8.16.custom.css"/>
-	<script type="text/javascript" src="public/admin/jqueryui/js/jquery-ui-1.8.16.custom.min.js"></script>
+
+    <script type="text/javascript">
+
+        function search_factura(q, fi, ff){
+            $.ajax({
+                //data: "q="+q+"&fi="+fi+"&ff="+ff+"&t="+1,
+                data: "q="+q+"&t="+1,
+                type: "POST",
+                dataType: "json",
+                url: "<?php echo site_url('ajax/facturas_ajax')?>",
+                success: function(data){
+                    if(data.length > 0){
+                        var html ='', sum=0;
+                        $.each(data, function(i,item){
+                            html += '<tr class="rows"><td></td><td>'+item.numero+'</td><td>'+item.nombre_comercial+'</td><td style="text-align:right">'+item.monto+'</td><td style="text-align:center">'+item.fecha+'</td><td><a href="<?php echo site_url('facturas/editar')?>/'+item.id+'" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a>&nbsp; <a href="<?php echo site_url('facturas/eliminar')?>/'+item.id+'" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="<?php echo base_url('public/admin/images/bdelete.png')?>" /></a>&nbsp; <a href="<?php echo site_url('facturas/imprimir')?>/'+item.id+'" class="tip"  title="Imprimir"><img src="<?php echo base_url('public/admin/images/pdf.png')?>" /></a></td></tr>';
+
+                            sum = sum + parseFloat(item.monto);
+
+                        });
+
+                        $(".total_pe").html("<b>"+sum.toFixed(2)+"</b>");
+                        $(".sortable_list_pen tbody").html(html);
+                        $(".sortable_list_pen").trigger("update");
+                        var sorting = [[1,0]];
+                        $(".sortable_list_pen").trigger("sorton",[sorting]);
+                    }else{
+                        $(".total_pe").html("<b>0.00</b>");
+                        $(".sortable_list_pen tbody").html("");
+                    }
+                }
+            });
+        }
+
+        search_factura($("#empresa").find("option:selected").val(),$("#fechai").val(),$("#fechaf").val());
+
+        $("#btn_search").click(function(){
+            search_factura($("#empresa").find("option:selected").val(),$("#fechai").val(),$("#fechaf").val());
+        });
+
+
+        var dates = $('#fechai, #fechaf').datepicker({
+            showOn: "button",
+            buttonImage: "<?php echo base_url('public/admin/images/calendar.png')?>",
+            buttonImageOnly: true,
+            maxDate: '+3M',
+            dateFormat: 'yy-mm-dd',
+            onSelect: function(selectedDate) {
+                var option = this.id == "fechai" ? "minDate" : "maxDate";
+                var instance = $(this).data("datepicker");
+                var date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+                dates.not(this).datepicker("option", option, date);
+            }
+        });
+
+
+    </script>
 
     
     

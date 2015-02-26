@@ -96,11 +96,11 @@
             </div>
         <?php } ?>
 			<form method="post" action="productos/agregar/" enctype="multipart/form-data" id="form_"> 
-            	<p><label>Nombre</label><br /> <input type="text" name="nombre"  size="55" class="text required"  value="<?php echo set_value('nombre',$_POST['nombre']) ?>"></p>
+            	<p><label>Nombre</label><br /> <input type="text" name="nombre"  size="55" class="text required"  value="<?php echo set_value('nombre') ?>"></p>
                 
-                <p><label>Descripción </label><br /> <textarea class="text m" name="descripcion"><?php echo set_value('descripcion',$_POST['descripcion']) ?></textarea></p>
+                <p><label>Descripción </label><br /> <textarea class="text m" name="descripcion"><?php echo set_value('descripcion') ?></textarea></p>
                 
-                <p><label>Precio</label><br /> <input type="text" name="precio" size="55" class="text required"  value="<?php echo set_value('precio',$_POST['precio']) ?>"></p>
+                <p><label>Precio</label><br /> <input type="text" name="precio" size="55" class="text required"  value="<?php echo set_value('precio') ?>"></p>
                     
                 <br clear="all" />
                 <hr>

@@ -63,14 +63,15 @@
     
     
     $array_datos = array(
-      'cliente_id' =>               $this->input->post("id_cliente"),
-      'valor_viaje' =>              $this->input->post("valor_viaje"),
-      'nave' =>                     $this->input->post("nave"),
-      'origen'  =>                  $this->input->post("origen"),
-      'fecha_origen' =>             $this->input->post("fecha_origen").":00",
-      'destino' =>                  $this->input->post("destino"),
-      'numero_contenedor' =>        $this->input->post("numero_contenedor"),
-      'notas_adicionales' =>        $this->input->post("notas_adicionales")
+        'cliente_id'    =>          $this->input->post("id_cliente"),
+        'valor_viaje'   =>          $this->input->post("valor_viaje"),
+        'nave'  =>                  $this->input->post("nave"),
+        'origen'    =>              $this->input->post("origen"),
+        'fecha_origen'  =>          $this->input->post("fecha_origen").":00",
+        'destino'   =>              $this->input->post("destino"),
+        'numero_contenedor' =>      $this->input->post("numero_contenedor"),
+        'notas_adicionales' =>      $this->input->post("notas_adicionales"),
+        'numero_guia'   =>          $this->input->post("numero_guia");
     );
     
     

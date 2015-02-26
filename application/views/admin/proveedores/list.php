@@ -111,22 +111,22 @@
         <?php } ?>
 			<form method="post" action="proveedores/agregar/" enctype="multipart/form-data" id="form_"> 
             	<div style="float:left; width:450px">
-                    <p><label>Nombre Comercial</label><br /> <input type="text" name="nombre"  size="55" class="text"  value="<?php echo set_value('nombre',$_POST['nombre']) ?>"></p>
-                    <p><label>Razón Social</label><br /> <input type="text" name="razon" size="55" class="text"  value="<?php echo set_value('razon',$_POST['razon']) ?>"></p>
+                    <p><label>Nombre Comercial</label><br /> <input type="text" name="nombre"  size="55" class="text"  value="<?php echo set_value('nombre') ?>"></p>
+                    <p><label>Razón Social</label><br /> <input type="text" name="razon" size="55" class="text"  value="<?php echo set_value('razon') ?>"></p>
                     
-                    <p><label>RUT</label><br /> <input type="text" name="nif_cif" size="55" class="text"  value="<?php echo set_value('nif_cif',$_POST['nif_cif']) ?>"></p>
+                    <p><label>RUT</label><br /> <input type="text" name="nif_cif" size="55" class="text"  value="<?php echo set_value('nif_cif') ?>"></p>
                     
-                    <p><label>Persona de Contacto</label><br /> <input type="text" name="contacto" size="55" class="text" value="<?php echo set_value('contacto',$_POST['contacto']) ?>"></p>
+                    <p><label>Persona de Contacto</label><br /> <input type="text" name="contacto" size="55" class="text" value="<?php echo set_value('contacto') ?>"></p>
                     
-                    <p><label>Página web </label><br /> <input type="text" name="pagina_web" size="55" class="text" value="<?php echo set_value('pagina_web',$_POST['pagina_web']) ?>"></p>
+                    <p><label>Página web </label><br /> <input type="text" name="pagina_web" size="55" class="text" value="<?php echo set_value('pagina_web') ?>"></p>
                     
-                    <p><label>Email</label><br /> <input type="text" name="email" size="55" class="text" value="<?php echo set_value('email',$_POST['email']) ?>"></p>
+                    <p><label>Email</label><br /> <input type="text" name="email" size="55" class="text" value="<?php echo set_value('email') ?>"></p>
                     
-                    <p><label>Teléfono </label><br /> <input type="text" name="telefono" size="55" class="text" value="<?php echo set_value('telefono',$_POST['telefono']) ?>"></p>
+                    <p><label>Teléfono </label><br /> <input type="text" name="telefono" size="55" class="text" value="<?php echo set_value('telefono') ?>"></p>
                     
-                    <p><label>Móvil </label><br /> <input type="text" name="movil" size="55" class="text" value="<?php echo set_value('movil',$_POST['movil']) ?>"></p>
+                    <p><label>Móvil </label><br /> <input type="text" name="movil" size="55" class="text" value="<?php echo set_value('movil') ?>"></p>
                     
-                    <p><label>Fax</label><br /> <input type="text" name="fax" size="55" class="text" value="<?php echo set_value('fax',$_POST['fax']) ?>"></p>
+                    <p><label>Fax</label><br /> <input type="text" name="fax" size="55" class="text" value="<?php echo set_value('fax') ?>"></p>
                     	
                 </div> 
                 <div style="float:left; width:450px; margin-left:50px">
@@ -134,19 +134,19 @@
 								?><option value="<?php echo $key['id_provincia'] ?>"><?php echo $key['nombre_provincia'] ?></option><?php
 						}
 						 ?></select></p>
-                    <p><label>Población</label><br /> <input type="text" name="poblacion" size="55" class="text" value="<?php echo set_value('poblacion',$_POST['poblacion']) ?>"></p>
+                    <p><label>Población</label><br /> <input type="text" name="poblacion" size="55" class="text" value="<?php echo set_value('poblacion') ?>"></p>
                     
-                    <p><label>Dirección</label><br /> <input type="text" name="direccion" size="55" class="text" value="<?php echo set_value('direccion',$_POST['direccion']) ?>"></p>
+                    <p><label>Dirección</label><br /> <input type="text" name="direccion" size="55" class="text" value="<?php echo set_value('direccion') ?>"></p>
                     
-                    <p><label>Código postal </label><br /> <input type="text" name="cp" size="55" class="text" value="<?php echo set_value('cp',$_POST['cp']) ?>"></p>
+                    <p><label>Código postal </label><br /> <input type="text" name="cp" size="55" class="text" value="<?php echo set_value('cp') ?>"></p>
                     
-                    <p><label>Tipo Empresa</label><br /> <input type="text" name="tipo" size="55" class="text" value="<?php echo set_value('tipo',$_POST['tipo']) ?>"></p>
+                    <p><label>Tipo Empresa</label><br /> <input type="text" name="tipo" size="55" class="text" value="<?php echo set_value('tipo') ?>"></p>
                     
-                    <p><label>Entidad Bancaria</label><br /> <input type="text" name="entidad" size="55" class="text" value="<?php echo set_value('entidad',$_POST['entidad']) ?>"></p>
+                    <p><label>Entidad Bancaria</label><br /> <input type="text" name="entidad" size="55" class="text" value="<?php echo set_value('entidad') ?>"></p>
                     
-                    <p><label>N° Cuenta</label><br /> <input type="text" name="numero_cuenta" size="55" class="text" value="<?php echo set_value('numero_cuenta',$_POST['numero_cuenta']) ?>"></p>
+                    <p><label>N° Cuenta</label><br /> <input type="text" name="numero_cuenta" size="55" class="text" value="<?php echo set_value('numero_cuenta') ?>"></p>
                     
-                    <p><label>Observaciones </label><br /> <textarea class="text m" name="observaciones"><?php echo set_value('observaciones',$_POST['observaciones']) ?></textarea></p>
+                    <p><label>Observaciones </label><br /> <textarea class="text m" name="observaciones"><?php echo set_value('observaciones') ?></textarea></p>
                 </div>
                 
                 <br clear="all" />

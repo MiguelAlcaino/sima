@@ -1,5 +1,5 @@
-    <link rel="stylesheet" type="text/css" href="public/admin/jquery-ui-1.11.2.custom/jquery-ui.css"/>
-    <script type="text/javascript" src="public/admin/jquery-ui-1.11.2.custom/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.css')?>"/>
+    <script type="text/javascript" src="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.js')?>"></script>
 
 <div class="block">
 
@@ -10,9 +10,9 @@
         <h2>Facturas</h2>
         
         <ul>
-        	<li class="active"><a href="facturas">Pendientes</a></li>
-            <li><a href="facturas/pagadas">Pagadas</a></li>            
-            <li><a href="facturas/nueva">Crear Factura</a></li>
+        	<li class="active"><a href="<?php echo site_url('facturas')?>">Pendientes</a></li>
+            <li><a href="<?php echo site_url('facturas/pagadas')?>">Pagadas</a></li>
+            <li><a href="<?php echo site_url('facturas/nueva')?>">Crear Factura</a></li>
         </ul>
         <ul>
         	<li>Del: <input type="text" id="fechai"  class="date" value="<?php echo date("Y-m-d",strtotime('-1 month',time()))?>"/></li>
@@ -92,12 +92,12 @@
           data: "q="+q+"&fi="+fi+"&ff="+ff+"&t="+t,
           type: "POST",
           dataType: "json",
-          url: "ajax/facturas_ajax/",
+          url: "<?php echo site_url('ajax/facturas_ajax')?>",
             success: function(data){ 
               if(data.length > 0){
                 var html ='', sum=0;
                 $.each(data, function(i,item){
-                  html += '<tr class="rows"><td></td><td>'+item.numero+'</td><td>'+item.nombre_comercial+'</td><td style="text-align:right">'+item.monto+'</td><td style="text-align:center">'+item.fecha+'</td><td><a href="facturas/editar/'+item.id+'" class="tip" title="Editar"><img src="public/admin/images/bedit.png" /></a>&nbsp; <a href="facturas/eliminar/'+item.id+'" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="public/admin/images/bdelete.png" /></a>&nbsp; <a href="facturas/imprimir_factura/'+item.id+'" class="tip"  title="Imprimir"><img src="public/admin/images/pdf.png" /></a></td></tr>';
+                  html += '<tr class="rows"><td></td><td>'+item.numero+'</td><td>'+item.nombre_comercial+'</td><td style="text-align:right">'+item.monto+'</td><td style="text-align:center">'+item.fecha+'</td><td><a href="<?php echo site_url('facturas/editar')?>/'+item.id+'" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a>&nbsp; <a href="<?php echo site_url('facturas/eliminar')?>/'+item.id+'" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="<?php echo base_url('public/admin/images/bdelete.png')?>" /></a>&nbsp; <a href="<?php echo site_url('facturas/imprimir_factura')?>/'+item.id+'" class="tip"  title="Imprimir"><img src="<?php echo base_url('public/admin/images/pdf.png')?>" /></a></td></tr>';
                   
                   sum = sum + parseFloat(item.monto);
                   

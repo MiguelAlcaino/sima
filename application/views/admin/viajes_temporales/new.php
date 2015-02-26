@@ -72,7 +72,9 @@
                     <p><label>Origen que aparecerá en la factura</label><br /> <input maxlength="10" type="text" name="origen" size="55" class="text" ></p>
                     
                     <p><label>Destino que aparecerá en la factura</label><br /> <input maxlength="10" type="text" name="destino" size="55" class="text" ></p>
-                    
+
+                    <p><label>Número guía</label><br /> <input maxlength="10" type="text" name="numero_guia" size="55" class="text" ></p>
+
                     <p><label>Valor del viaje</label><br /> <input id="valor_viaje_num" type="text" name="valor_viaje_num" size="55" class="text" >
                       <input id="valor_viaje" type="hidden" name="valor_viaje">
                     </p>

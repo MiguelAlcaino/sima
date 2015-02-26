@@ -13,7 +13,7 @@ $this->output->set_header("Content-Type: text/html; charset=UTF-8");
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=7" />
 <head>
-<base href="http://gps.contact.cl/sima/" />
+<base href="<?php echo site_url('')?>" />
 
 <title>Administrador : <?php echo NOMBRE_SITIO?></title>
 <style type="text/css" media="all">

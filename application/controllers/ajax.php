@@ -6,6 +6,7 @@ class Ajax extends CI_Controller
 		parent::__construct();
 		
 		$this->load->model('ms_model','ms');
+        $this->load->helper('url');
 	}
 
 	function index()
@@ -125,7 +126,7 @@ class Ajax extends CI_Controller
     $html = "<div id='popup' style='width:470px; height:550px' class='block'><h2>Añadir nuevo conductor</h2>";
     $html .= '<div class="block">
           <div class="block_content">
-           <form id="form_anadir_conductor" method="post" action="conductores_proveedor_terceros/add" enctype="multipart/form-data">
+           <form id="form_anadir_conductor" method="post" action="'.site_url('conductores_proveedor_terceros/add').'" enctype="multipart/form-data">
         
                  
                 <div style="float:left; width:450px">
@@ -219,7 +220,7 @@ class Ajax extends CI_Controller
     $html = "<div id='popup' style='width:470px; height:495px' class='block'><h2>Añadir nuevo conductor</h2>";
     $html .= '<div class="block">
           <div class="block_content">
-            <form id="form_anadir_conductor" method="post" action="conductores/add" enctype="multipart/form-data">
+            <form id="form_anadir_conductor" method="post" action="'.site_url('conductores/add').'" enctype="multipart/form-data">
         
                  
                 <div style="float:left; width:450px">
@@ -351,7 +352,7 @@ class Ajax extends CI_Controller
           source: function( request, response ) {
             tipo = $("#tipo:checked").val();
             $.ajax({
-              url: "ajax/filtro_prod_serv",
+              url: "'.site_url('ajax/filtro_prod_serv').'",
               type:"POST",
               dataType: "json",
               data: {
@@ -430,7 +431,7 @@ class Ajax extends CI_Controller
           errorClass : "error",
           errorElement : "span",
           submitHandler: function(form) {
-            var html = "<tr><td></td><td><input type=\'hidden\' name=\'origen_detalle_id_form[]\' value="+$("#origen_detalle_id").val()+" /> <input type=\'hidden\' name=\'tipo_detalle_form[]\' value="+$("#tipo_detalle").val()+" /> <input style=\'text-align:center\' value="+$("#cantidad").val()+"  name=\'quantity[]\' class=\'quantity\' type=\'text\'><input type=\'hidden\' name=\'descripcion[]\' value=\'"+$("#term").val()+"\' ></td><td>"+$("#term").val()+"</td><td><input style=\'text-align:right\' value="+$("#precio_b").val()+" type=\'text\' class=\'psi\' name=\'psi[]\'></td><td style=\'text-align:right\' class=ptotal>"+($("#precio_b").val() * $("#cantidad").val()).toFixed(0)+"</td><td  style=\'text-align:center\'><a  class=\'delete\'  title=\'Eliminar\'  href=javascript:;><img src=\'public/admin/images/bdelete.png\' /></td></tr>";
+            var html = "<tr><td></td><td><input type=\'hidden\' name=\'origen_detalle_id_form[]\' value="+$("#origen_detalle_id").val()+" /> <input type=\'hidden\' name=\'tipo_detalle_form[]\' value="+$("#tipo_detalle").val()+" /> <input style=\'text-align:center\' value="+$("#cantidad").val()+"  name=\'quantity[]\' class=\'quantity\' type=\'text\'><input type=\'hidden\' name=\'descripcion[]\' value=\'"+$("#term").val()+"\' ></td><td>"+$("#term").val()+"</td><td><input style=\'text-align:right\' value="+$("#precio_b").val()+" type=\'text\' class=\'psi\' name=\'psi[]\'></td><td style=\'text-align:right\' class=ptotal>"+($("#precio_b").val() * $("#cantidad").val()).toFixed(0)+"</td><td  style=\'text-align:center\'><a  class=\'delete\'  title=\'Eliminar\'  href=javascript:;><img src=\''.base_url('public/admin/images/bdelete.png').'\' /></td></tr>";
           
             if($("#detalle tr").eq(0).hasClass("nothing")){
               $("#detalle").html(html);
@@ -466,7 +467,7 @@ class Ajax extends CI_Controller
 		$( "#term" ).autocomplete({
 					source: function( request, response ) {
 						$.ajax({
-							url: "ajax/filtro_prod_serv",
+							url: "'.site_url('ajax/filtro_prod_serv').'",
 							type:"POST",
 							dataType: "json",
 							data: {
@@ -504,7 +505,7 @@ class Ajax extends CI_Controller
 					errorClass : "error",
 					errorElement : "span",
 					submitHandler: function(form) {
-						var html = "<tr><td></td><td><input style=\'text-align:center\' value="+$("#cantidad").val()+"  name=\'quantity[]\' class=\'quantity\' type=\'text\'><input type=\'hidden\' name=\'descripcion[]\' value=\'"+$("#term").val()+"\' ></td><td>"+$("#term").val()+"</td><td><input style=\'text-align:right\' value="+$("#precio_b").val()+" type=\'text\' class=\'psi\' name=\'psi[]\'></td><td style=\'text-align:right\' class=ptotal>"+($("#precio_b").val() * $("#cantidad").val()).toFixed(0)+"</td><td  style=\'text-align:center\'><a  class=\'delete\'  title=\'Eliminar\'  href=javascript:;><img src=\'public/admin/images/bdelete.png\' /></td></tr>";
+						var html = "<tr><td></td><td><input style=\'text-align:center\' value="+$("#cantidad").val()+"  name=\'quantity[]\' class=\'quantity\' type=\'text\'><input type=\'hidden\' name=\'descripcion[]\' value=\'"+$("#term").val()+"\' ></td><td>"+$("#term").val()+"</td><td><input style=\'text-align:right\' value="+$("#precio_b").val()+" type=\'text\' class=\'psi\' name=\'psi[]\'></td><td style=\'text-align:right\' class=ptotal>"+($("#precio_b").val() * $("#cantidad").val()).toFixed(0)+"</td><td  style=\'text-align:center\'><a  class=\'delete\'  title=\'Eliminar\'  href=javascript:;><img src=\''.base_url('public/admin/images/bdelete.png').'\' /></td></tr>";
 					
 						if($("#detalle tr").eq(0).hasClass("nothing")){
 							$("#detalle").html(html);

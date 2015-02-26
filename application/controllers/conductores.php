@@ -9,7 +9,7 @@ class Conductores extends CI_Controller
   
   function index(){
     //$data['conductores'] = $this->conductores_model->getAll();
-    $this->template->display('admin/conductores/list',$data);
+    $this->template->display('admin/conductores/list');
   }
   
   function nuevo(){

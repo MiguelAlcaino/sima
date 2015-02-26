@@ -11,6 +11,7 @@ class Productos extends CI_Controller
 	function index()
 	{	
 		$data['data']  = $this->productos->get_all();
+    $data['tab'] = '';
 		$this->template->display('admin/productos/list',$data);
 		
 	}

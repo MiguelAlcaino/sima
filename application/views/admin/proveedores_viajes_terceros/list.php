@@ -79,7 +79,7 @@
           data: "q="+q+"&fi="+fi+"&ff="+ff+"&t="+t,
           type: "POST",
           dataType: "json",
-          url: "ajax/list_proveedores_viajes_terceros_ajax",
+          url: '<?php echo site_url("ajax/list_proveedores_viajes_terceros_ajax")?>',
             success: function(data){ 
               if(data.length > 0){
                 var html ='', sum=0;
@@ -89,8 +89,8 @@
                   html += '<td>'+item.persona_de_contacto+'</td>';
                   html += '<td>'+item.telefono+'</td>';
                   html += '<td>';
-                  html += '<a href="proveedores_viajes_terceros/editar/'+item.id+'" class="tip" title="Editar"><img src="public/admin/images/bedit.png" /></a>&nbsp;';
-                  html += '<a href="proveedores_viajes_terceros/eliminar/'+item.id+'" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="public/admin/images/bdelete.png" /></a>&nbsp; </td>';
+                  html += '<a href="<?php echo site_url('proveedores_viajes_terceros/editar')?>/'+item.id+'" class="tip" title="Editar"><img src="public/admin/images/bedit.png" /></a>&nbsp;';
+                  html += '<a href="<?php echo site_url('proveedores_viajes_terceros/eliminar')?>/'+item.id+'" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="public/admin/images/bdelete.png" /></a>&nbsp; </td>';
                   
                   html += '</tr>';
                   

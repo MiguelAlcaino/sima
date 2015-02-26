@@ -382,7 +382,7 @@ $pdf->writeHTMLCell(0,5,113,211,$html,$borde);
 // ---------------------------------------------------------
 
 //Close and output PDF document
-$pdf->Output($data[0]['numero'], 'D');
+$pdf->Output($data[0]['numero'].'.pdf', 'D');
 
   }
 	

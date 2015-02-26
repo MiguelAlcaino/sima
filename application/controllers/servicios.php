@@ -11,6 +11,7 @@ class Servicios extends CI_Controller
 	function index()
 	{	
 		$data['data']  = $this->servicios->get_all();
+    $data['tab'] = '';
 		$this->template->display('admin/servicios/list',$data);
 		
 	}

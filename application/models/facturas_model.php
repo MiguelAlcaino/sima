@@ -76,8 +76,17 @@ class Facturas_model extends CI_Model
 		$ff = $this->input->post("ff");
 		$t  = $this->input->post("t");
 		
-		if($fi != '' && $ff != '') $wfecha = " AND f.fecha BETWEEN '".$fi."' AND '".$ff."'";
-		if($q != '') $wcl = " AND c.id_cliente = '".$q."'";
+		if($fi != '' && $ff != ''){
+            $wfecha = " AND f.fecha BETWEEN '".$fi."' AND '".$ff."'";
+        }else{
+            $wfecha = '';
+        }
+		if($q != ''){
+		  $wcl = " AND c.id_cliente = '".$q."'";
+		}else{
+		  $wcl = '';
+		}
+		 
 		 
 		$query = $this->db->query("SELECT f.id_factura id, f.numero, c.nombre_comercial, f.monto, 
 												DATE_FORMAT(f.fecha , '%d/%m/%Y') fecha

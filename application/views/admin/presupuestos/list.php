@@ -147,7 +147,7 @@
 				$( "#clientes" ).autocomplete({
 					source: function( request, response ) {
 						$.ajax({
-							url: "ajax/clientes",
+							url: "<?php echo site_url('ajax/clientes')?>",
 							type:"POST",
 							dataType: "json",
 							data: {
@@ -185,7 +185,7 @@
 				});
 				
 				$("#buscar_prod_serv").click(function() {
-					$('<a href="ajax/search_prod_serv"></a>').facebox({
+					$('<a href="<?php echo site_url('ajax/search_prod_serv')?>"></a>').facebox({
 						overlayShow: true
 					}).click();
 
@@ -238,7 +238,7 @@
             <?php echo validation_errors(); ?>
             </div>
         <?php } ?>
-			<form method="post" action="presupuestos/agregar/" enctype="multipart/form-data" id="form_new_p" name="form_new_p"> 
+			<form method="post" action="<?php echo site_url('presupuestos/agregar')?>" enctype="multipart/form-data" id="form_new_p" name="form_new_p">
             	<input type="hidden" id="id_cliente" name="id_cliente" />
             	<div style="width:50%; float:left">
                 	<p><label>Número</label><br /> <input type="text" name="numero" class="text required"  value="<?php echo $cod ?>"></p>

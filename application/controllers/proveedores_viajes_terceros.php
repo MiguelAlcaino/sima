@@ -10,7 +10,7 @@ class Proveedores_viajes_terceros extends CI_Controller
   
   function index(){
     //$data['conductores'] = $this->conductores_model->getAll();
-    $this->template->display('admin/proveedores_viajes_terceros/list',$data);
+    $this->template->display('admin/proveedores_viajes_terceros/list');
   }
   
   function nuevo(){
@@ -71,7 +71,7 @@ class Proveedores_viajes_terceros extends CI_Controller
   }
   
   function eliminar($id){
-    $this->this->proveedores_viajes_terceros_model->delete($id);
+    $this->proveedores_viajes_terceros_model->delete($id);
     $this->session->set_flashdata('message', '<div class="message success">Se ha eliminado correctamente</div>');
     redirect("proveedores_viajes_terceros");
   }

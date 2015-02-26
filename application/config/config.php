@@ -11,7 +11,7 @@
 |	http://example.com/
 |
 */
-$config['base_url']	= "http://gps.contact.cl/sima/";
+$config['base_url']	= "";
 
 /*
 |--------------------------------------------------------------------------

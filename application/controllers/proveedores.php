@@ -14,6 +14,7 @@ class Proveedores extends CI_Controller
 	{	
 		$data['data']  = $this->proveedores->get_all();
 		$data['provincias']  = $this->provincias->get_all();
+    $data['tab'] = '';
 		$this->template->display('admin/proveedores/list',$data);
 		
 	}
