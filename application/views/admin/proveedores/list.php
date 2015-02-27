@@ -109,7 +109,7 @@
             <?php echo validation_errors(); ?>
             </div>
         <?php } ?>
-			<form method="post" action="proveedores/agregar/" enctype="multipart/form-data" id="form_"> 
+			<form method="post" action="<?php echo site_url('proveedores/agregar')?>" enctype="multipart/form-data" id="form_">
             	<div style="float:left; width:450px">
                     <p><label>Nombre Comercial</label><br /> <input type="text" name="nombre"  size="55" class="text"  value="<?php echo set_value('nombre') ?>"></p>
                     <p><label>Razón Social</label><br /> <input type="text" name="razon" size="55" class="text"  value="<?php echo set_value('razon') ?>"></p>
@@ -163,3 +163,6 @@
     <div class="bendl"></div>
     <div class="bendr"></div>
 </div>
+<script>
+    $('.sortable_list').tablesorter();
+</script>

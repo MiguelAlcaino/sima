@@ -1,5 +1,6 @@
-    <link rel="stylesheet" type="text/css" href="public/admin/jquery-ui-1.11.2.custom/jquery-ui.css"/>
-    <script type="text/javascript" src="public/admin/jquery-ui-1.11.2.custom/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo site_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.css')?>"/>
+    <script type="text/javascript" src="<?php echo site_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.js')?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('public/admin/js/jquery.tablesorter.min.js')?>"></script>
 
 <div class="block">
 
@@ -128,7 +129,7 @@
         dates.not(this).datepicker("option", option, date);
       }
     });
-      
+      $('sortable_list_pen').tablesorter();
         </script>
         
     </div>    

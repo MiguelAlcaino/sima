@@ -816,7 +816,7 @@ a:hover {
 
 .block form input.submit.largo { width: 200px; background: url(../images/btn_large.png) top center no-repeat; }
 .block form input.submit.largo:hover { width: 200px; background: url(../images/btn_large_.png) top center no-repeat; }
-//
+
 .block form input.submit.long { width: 165px; background: url(../images/btnb.gif) top center no-repeat; }
 .block form input.submit.long:hover { background: url(../images/btnb_.gif) top center no-repeat; }
 
@@ -1137,4 +1137,9 @@ a:hover {
 .sortable_list_pen tfoot tr{
   background: white;
   
+}
+
+.sortable_list thead th,
+.sortable_list_pen thead th{
+    cursor: pointer;
 }

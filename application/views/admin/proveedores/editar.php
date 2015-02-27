@@ -19,7 +19,7 @@
             <?php echo validation_errors(); ?>
             </div>
         <?php } ?>
-			<form method="post" action="proveedores/actualizar/" enctype="multipart/form-data">                
+			<form method="post" action="<?php echo site_url('proveedores/actualizar')?>" enctype="multipart/form-data">
                  <input type="hidden" name="id" id="id" value="<?php echo $data[0]['id_proveedor']?>" />
                  
                 <div style="float:left; width:450px">

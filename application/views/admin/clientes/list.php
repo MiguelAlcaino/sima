@@ -1,5 +1,6 @@
-<link rel="stylesheet" type="text/css" href="public/admin/jquery-ui-1.11.2.custom/jquery-ui.css"/>
-<script type="text/javascript" src="public/admin/jquery-ui-1.11.2.custom/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.css')?>"/>
+<script type="text/javascript" src="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.js')?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/admin/js/jquery.tablesorter.min.js')?>"></script>
 <div class="block">
 
     <div class="block_head">
@@ -87,6 +88,8 @@
                 </select>
         </div>
 		<script type="text/javascript">
+            $('.sortable_list').tablesorter();
+            /*
         	$(function () {
 				$("table.sortable_list").tablesorter({
 					headers: { 0: { sorter: false}, 7: {sorter: false} },		// Disabled on the 1st and 6th columns
@@ -96,8 +99,9 @@
                     filterCaseSensitive: false
                 }).tablesorterPager({container: $("#pager"),positionFixed: false}
 				);
-				
+
 			});
+			*/
         </script>
         <?php 
 		}

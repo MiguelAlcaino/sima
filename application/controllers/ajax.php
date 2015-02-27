@@ -64,7 +64,7 @@ class Ajax extends CI_Controller
 	}
   
   function anadir_conductor(){
-    $html .= "<div id='popup' style='width:470px; height:506px' class='block'><h2>Agregar un conductor</h2>";
+    $html = "<div id='popup' style='width:470px; height:506px' class='block'><h2>Agregar un conductor</h2>";
     $html .= '<div class="block">
           <div class="block_content">
             <form id="form_add_conductor">

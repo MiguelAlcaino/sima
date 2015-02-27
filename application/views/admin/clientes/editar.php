@@ -21,7 +21,7 @@
             <?php echo validation_errors(); ?>
             </div>
         <?php } ?>
-			<form method="post" action="clientes/actualizar/" enctype="multipart/form-data">
+			<form method="post" action="<?php echo site_url('clientes/actualizar')?>" enctype="multipart/form-data">
 			  
 			                  
                  <input type="hidden" name="id" id="id" value="<?php echo $data[0]['id_cliente']?>" />

@@ -1,8 +1,3 @@
-<link rel="stylesheet" type="text/css" href="public/admin/jquery-ui-1.11.2.custom/jquery-ui.css"/>
-<link rel="stylesheet" type="text/css" href="public/admin/datetimepicker/jquery.datetimepicker.css"/ >
-<script type="text/javascript" src="public/admin/jquery-ui-1.11.2.custom/jquery-ui.js"></script>
-<script src="public/admin/datetimepicker/jquery.datetimepicker.js"></script>
-
 <style>
 
 </style>
@@ -31,7 +26,7 @@
             <?php echo validation_errors(); ?>
             </div>
         <?php } ?>
-      <form method="post" action="proveedores_viajes_terceros/add" enctype="multipart/form-data">
+      <form method="post" action="<?php echo site_url('proveedores_viajes_terceros/add')?>" enctype="multipart/form-data">
         
                  
                 <div style="float:left; width:900px">
@@ -97,7 +92,7 @@
   }
   
   $("#anadir_conductor").click(function() {
-          $('<a href="ajax/anadir_conductor"></a>').facebox({
+          $('<a href="<?php echo site_url('ajax/anadir_conductor')?>"></a>').facebox({
             overlayShow: true
           }).click();
 

@@ -31,7 +31,7 @@
             <?php echo validation_errors(); ?>
             </div>
         <?php } ?>
-      <form method="post" action="proveedores_viajes_terceros/add" enctype="multipart/form-data">
+      <form method="post" action="<?php echo site_url('proveedores_viajes_terceros/add')?>" enctype="multipart/form-data">
         
                  
                 <div style="float:left; width:900px">

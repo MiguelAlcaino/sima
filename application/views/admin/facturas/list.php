@@ -125,7 +125,7 @@
       
       var dates = $('#fechai, #fechaf').datepicker({
       showOn: "button",
-      buttonImage: "public/admin/images/calendar.png",
+      buttonImage: "<?php echo base_url('public/admin/images/calendar.png')?>",
       buttonImageOnly: true,
       maxDate: '+3M',
       dateFormat: 'yy-mm-dd',
@@ -136,7 +136,7 @@
         dates.not(this).datepicker("option", option, date);
       }
     });
-      
+      $('.sortable_list_pen').tablesorter();
     
     </script>    
     

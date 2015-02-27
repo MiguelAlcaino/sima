@@ -19,7 +19,7 @@
             <?php echo validation_errors(); ?>
             </div>
         <?php } ?>
-			<form method="post" action="servicios/actualizar/" enctype="multipart/form-data">                
+			<form method="post" action="<?php echo site_url('servicios/actualizar')?>" enctype="multipart/form-data">
                  <input type="hidden" name="id" id="id" value="<?php echo $data[0]['id_servicio']?>" />
                  <p><label>Nombre</label><br /> <input type="text" name="nombre"  size="55" class="text required"  value="<?php echo $data[0]['nombre'] ?>"></p>
                 

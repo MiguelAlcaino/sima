@@ -95,7 +95,7 @@
             <?php echo validation_errors(); ?>
             </div>
         <?php } ?>
-			<form method="post" action="servicios/agregar/" enctype="multipart/form-data" id="form_"> 
+			<form method="post" action="<?php echo site_url('servicios/agregar')?>" enctype="multipart/form-data" id="form_">
             	<p><label>Nombre</label><br /> <input type="text" name="nombre"  size="55" class="text required"  value="<?php echo set_value('nombre') ?>"></p>
                 
                 <p><label>Descripción </label><br /> <textarea class="text m" name="descripcion"><?php echo set_value('descripcion') ?></textarea></p>
@@ -116,3 +116,6 @@
     <div class="bendl"></div>
     <div class="bendr"></div>
 </div>
+<script>
+    $('.sortable_list').tablesorter();
+</script>

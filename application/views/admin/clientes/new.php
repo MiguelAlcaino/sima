@@ -1,5 +1,5 @@
-<link rel="stylesheet" type="text/css" href="public/admin/jquery-ui-1.11.2.custom/jquery-ui.css"/>
-<script type="text/javascript" src="public/admin/jquery-ui-1.11.2.custom/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.css')?>"/>
+<script type="text/javascript" src="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.js')?>"></script>
 <div class="block">
 
     <div class="block_head">
@@ -22,7 +22,7 @@
             <?php echo validation_errors(); ?>
             </div>
         <?php } ?>
-      <form method="post" action="clientes/agregar/" enctype="multipart/form-data" id="form_"> 
+      <form method="post" action="<?php echo site_url('clientes/agregar')?>" enctype="multipart/form-data" id="form_">
               <div style="float:left; width:450px">
                     <p><label>Nombre Comercial</label><br /> <input type="text" name="nombre"  size="55" class="text"  value="<?php echo set_value('nombre') ?>"></p>
                     <p><label>Razón Social</label><br /> <input type="text" name="razon" size="55" class="text"  value="<?php echo set_value('razon') ?>"></p>

@@ -22,12 +22,17 @@ $this->output->set_header("Content-Type: text/html; charset=UTF-8");
     @import url("public/admin/css/facebox.css");
     @import url("public/admin/css/visualize.css");
     @import url("public/admin/css/date_input.css");
+    @import url("<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.css')?>");
+    @import url("<?php echo base_url('public/admin/datetimepicker/jquery.datetimepicker.css')?>");
 </style>
 <!--[if lt IE 8]>
     <style type="text/css" media="all">@import url("public/admin/css/ie.css");</style>
 <![endif]-->
-<!--[if IE]><script type="text/javascript" src="public/admin/js/excanvas.js"></script><![endif]-->	
-<script type="text/javascript" src="public/admin/js/jquery-1.11.1.min.js"></script>
+<!--[if IE]><script type="text/javascript" src="public/admin/js/excanvas.js"></script><![endif]-->
+    <script type="text/javascript" src="<?php echo base_url('public/admin/js/jquery-1.11.1.min.js')?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.js')?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/admin/datetimepicker/jquery.datetimepicker.js')?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/admin/js/jquery.tablesorter.min.js')?>"></script>
 <script type="text/javascript" src="public/admin/js/jquery.img.preload.js"></script>
 <script type="text/javascript" src="public/admin/js/jquery.filestyle.mini.js"></script>
 <script type="text/javascript" src="public/admin/js/jquery.wysiwyg.js"></script>

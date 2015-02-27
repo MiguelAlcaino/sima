@@ -1,7 +1,7 @@
-<link rel="stylesheet" type="text/css" href="public/admin/jquery-ui-1.11.2.custom/jquery-ui.css" />
-<link rel="stylesheet" type="text/css" href="public/admin/datetimepicker/jquery.datetimepicker.css" />
-<script type="text/javascript" src="public/admin/jquery-ui-1.11.2.custom/jquery-ui.js"></script>
-<script src="public/admin/datetimepicker/jquery.datetimepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.css')?>"/>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/admin/datetimepicker/jquery.datetimepicker.css')?>"/ >
+<script type="text/javascript" src="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.js')?>"></script>
+<script src="<?php echo base_url('public/admin/datetimepicker/jquery.datetimepicker.js')?>"></script>
 
 <style>
 
@@ -28,7 +28,7 @@
             <?php echo validation_errors(); ?>
             </div>
         <?php } ?>
-      <form method="post" action="conductores_proveedor_terceros/update" enctype="multipart/form-data">
+      <form method="post" action="<?php echo site_url('conductores_proveedor_terceros/update/'.$data[0]['id'])?>" enctype="multipart/form-data">
         
                  
                 <div style="float:left; width:450px">

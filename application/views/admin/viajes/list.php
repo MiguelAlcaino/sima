@@ -1,5 +1,4 @@
-    <link rel="stylesheet" type="text/css" href="public/admin/jquery-ui-1.11.2.custom/jquery-ui.css"/>
-    <script type="text/javascript" src="public/admin/jquery-ui-1.11.2.custom/jquery-ui.js"></script>
+
 
 <div class="block">
 
@@ -147,6 +146,7 @@
         dates.not(this).datepicker("option", option, date);
       }
     });
+          $('.sortable_list_pen').tablesorter();
       
         </script>
         
