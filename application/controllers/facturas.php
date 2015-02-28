@@ -258,7 +258,7 @@ $data= array(
   array("cantidad"=>48,"detalle" => "Bedidas enérgeticas", "precio_unitario"=>1200),
 );
 */
-$tamano_fuente_detalle = "9px";
+$tamano_fuente_detalle = "12px";
 $alto_celda_detalle = 7;
 $i=0;
 $subtotal = 0;
@@ -276,7 +276,7 @@ foreach($detail as $key => $value){
   $html = '<style>
   p{
     color: '.$color_texto.';
-
+    font-size: '.$tamano_fuente_detalle.';
   }
   </style>
   <p>'.$value['descripcion'].'</p>';
