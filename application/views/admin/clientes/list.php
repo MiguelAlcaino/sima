@@ -1,6 +1,3 @@
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.css')?>"/>
-<script type="text/javascript" src="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.js')?>"></script>
-<script type="text/javascript" src="<?php echo base_url('public/admin/js/jquery.tablesorter.min.js')?>"></script>
 <div class="block">
 
     <div class="block_head">
@@ -58,8 +55,8 @@
                             <td><?php echo $key['email']  ?></td>
                             <td><?php echo $key['nombre_provincia']  ?></td>
                             <td class="options">
-                                <a href="clientes/editar/<?php echo $key['id_cliente'] ?>" class="tip" title="Editar"><img src="public/admin/images/bedit.png" /></a>
-                                <a href="clientes/eliminar/<?php echo $key['id_cliente'] ?>" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="public/admin/images/bdelete.png" /></a>
+                                <a href="<?php echo site_url('clientes/editar/'.$key['id_cliente']) ?>" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a>
+                                <a href="<?php echo site_url('clientes/eliminar/'.$key['id_cliente'])?>" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="<?php echo base_url('public/admin/images/bdelete.png')?>" /></a>
                                 
                             </td>
                         </tr>

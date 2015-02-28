@@ -10,7 +10,7 @@ class Ajax extends CI_Controller
 	}
 
 	function index()
-	{	
+	{
 	
 	}
 	
@@ -36,7 +36,11 @@ class Ajax extends CI_Controller
     $data['value'] = json_encode($this->viajes_model->getViajesPropiosYTerceros());
     $this->load->view("admin/ajax/responce",$data);
   }
-  
+    public function viajesPropiosYTercerosPorNumeroContenedor(){
+        $this->load->model('viajes_model');
+        $data['value'] = json_encode($this->viajes_model->getViajesPropiosYTercerosByNumeroContenedor($this->input->post('numero_contenedor')));
+        $this->load->view("admin/ajax/responce",$data);
+    }
   function viajesPropiosYTercerosPorCliente(){
     $this->load->model("viajes_model");
     $data['value'] = json_encode($this->viajes_model->getViajesPropiosYTercerosByClienteId($this->input->post("cliente_id")));
@@ -67,8 +71,11 @@ class Ajax extends CI_Controller
     $html = "<div id='popup' style='width:470px; height:506px' class='block'><h2>Agregar un conductor</h2>";
     $html .= '<div class="block">
           <div class="block_content">
-            <form id="form_add_conductor">
-            <p>
+            <form id="form_add_conductor">';
+    if($this->uri->segment(3) == 'in_edit'){
+        $html .= '<input type="hidden" name="proveedor_viajes_terceros_id" value="'.$this->uri->segment(4).'" />';
+    }
+    $html .='<p>
               <label>Identificador:</label> <input id="identificador" type="text" name="identificador" id="identificador" class="text required" />
             </p>
             
@@ -76,7 +83,7 @@ class Ajax extends CI_Controller
               <label>Nombre:</label><br /> <input id="nombre_conductor" type="text required" name="nombre" class="text" style="width:220px" />
             </p>
             <p>
-              <label>Apellido:</label><br /> <input id="apellido_conductor" type="text required" name="apellido" class="text" style="width:220px" />
+              <label>Apellido:</label><br /> <input id="apellido_conductor" type="text required" name="apellidos" class="text" style="width:220px" />
             </p>
             <p>
               <label>Rut:</label><br /> <input id="rut_conductor" type="text required" name="rut" class="text" style="width:220px" />
@@ -94,27 +101,62 @@ class Ajax extends CI_Controller
     
     $html .= '<script>
         $("#form_add_conductor").validate({
-          submitHandler: function(form) {
-            
-            html = "<tr><td>"+$(\'#identificador\').val()+"</td><td>"+$(\'#nombre_conductor\').val()+"</td><td>"+$(\'#apellido_conductor\').val()+"</td><td>"+$(\'#rut_conductor\').val()+"</td><td>"+$(\'#patente_camion_asociada\').val()+"</td><td>"+$(\'#patente_rampla_asociada\').val()+"</td><td><img src=\'public/admin/images/bdelete.png\' style=\'cursor: pointer;\' onclick=\'eliminar_fila(this)\'></td>";
+          submitHandler: function(form) {';
+            if($this->uri->segment(3) == 'in_edit'){
+                $html .='html = "<tr><td>"+$(\'#identificador\').val()+"</td><td>"+$(\'#nombre_conductor\').val()+"</td><td>"+$(\'#apellido_conductor\').val()+"</td><td>"+$(\'#rut_conductor\').val()+"</td><td>"+$(\'#patente_camion_asociada\').val()+"</td><td>"+$(\'#patente_rampla_asociada\').val()+"</td><td><img src=\'public/admin/images/bdelete.png\' style=\'cursor: pointer;\' onclick=\'eliminar_fila_edit(this,'.$this->uri->segment(4).')\'></td>";';
+            }else{
+                $html .='html = "<tr><td>"+$(\'#identificador\').val()+"</td><td>"+$(\'#nombre_conductor\').val()+"</td><td>"+$(\'#apellido_conductor\').val()+"</td><td>"+$(\'#rut_conductor\').val()+"</td><td>"+$(\'#patente_camion_asociada\').val()+"</td><td>"+$(\'#patente_rampla_asociada\').val()+"</td><td><img src=\'public/admin/images/bdelete.png\' style=\'cursor: pointer;\' onclick=\'eliminar_fila(this)\'></td>";';
+            }
+
+            $html .='
             html += "<input type=\'hidden\' value=\'"+$(\'#identificador\').val()+"\' name=\'identificador[]\' />";
             html += "<input type=\'hidden\' value=\'"+$(\'#nombre_conductor\').val()+"\' name=\'nombre_conductor[]\' />";
             html += "<input type=\'hidden\' value=\'"+$(\'#apellido_conductor\').val()+"\' name=\'apellido_conductor[]\' />";
             html += "<input type=\'hidden\' value=\'"+$(\'#rut_conductor\').val()+"\' name=\'rut_conductor[]\' />";
             html += "<input type=\'hidden\' value=\'"+$(\'#patente_camion_asociada\').val()+"\' name=\'patente_camion_asociada[]\' />";
             html += "<input type=\'hidden\' value=\'"+$(\'#patente_rampla_asociada\').val()+"\' name=\'patente_rampla_asociada[]\' />";
-            html += "</tr>";
-            $("#conductores_table tbody").append(html);
+
+
             contador_filas++;
-            $("#contador_filas").val(contador_filas);
-            $.facebox.close();
-            return false;
-          }
+            $("#contador_filas").val(contador_filas);';
+            if($this->uri->segment(3) == 'in_edit'){
+                $html .='$.ajax({
+                    url: "'.site_url("ajax/saveNewConductor").'",
+                    method: "POST",
+                    data: $("#form_add_conductor").serializeArray(),
+                    success: function(data){
+                        html +="<input name=\'proveedor_viajes_terceros_id\' type=\'hidden\' value=\'"+$.parseJSON(data).conductor_id+"\' />";
+                        html += "</tr>";
+                        $("#conductores_table tbody").append(html);
+                        $.facebox.close();
+                        return false;
+                    }
+                });';
+            }else{
+                $html .= 'html += "</tr>";
+                $("#conductores_table tbody").append(html);';
+                $html .= '$.facebox.close();
+                return false;';
+            }
+
+          $html .='}
         });
     </script>';
     
     $data['value'] = $html;
     $this->load->view("admin/ajax/responce",$data);
+  }
+
+  public function saveNewConductor(){
+      $this->load->model('conductores_proveedor_terceros_model');
+      $data['value'] = json_encode(array('conductor_id' => $this->conductores_proveedor_terceros_model->add($this->input->post(null, true))));
+      $this->load->view("admin/ajax/responce",$data);
+  }
+  public function deleteConductorProveedorTerceros(){
+      $this->load->model('conductores_proveedor_terceros_model');
+      $this->conductores_proveedor_terceros_model->delete($this->input->post('conductor_id'));
+      $data['value'] = json_encode(array('status'=>'success'));
+      $this->load->view("admin/ajax/responce",$data);
   }
   
   function add_conductor_tercero_a_viaje_temporal($viaje_temporal_id){
@@ -302,7 +344,8 @@ class Ajax extends CI_Controller
     $data['value'] = $html;
     $this->load->view("admin/ajax/responce",$data);
   }
-	
+
+
 	function search_prod_serv()
 	{
 		 

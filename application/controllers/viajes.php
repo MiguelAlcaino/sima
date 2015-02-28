@@ -219,5 +219,8 @@
     $this->viajes_model->update($id, $array_datos);
     redirect("viajes/editar/".$id);
   }
+    public function buscarViajesPorContenedor(){
+        $this->template->display('admin/viajes/searchViajesPorContenedor');
+    }
 }
 ?>

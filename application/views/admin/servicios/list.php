@@ -44,8 +44,8 @@
                             <td><?php echo $key['nombre'] ?></td>
                             <td><?php echo $key['precio']  ?></td>
                             <td class="options">
-                                <a href="servicios/editar/<?php echo $key['id_servicio'] ?>" class="tip" title="Editar"><img src="public/admin/images/bedit.png" /></a>
-                                <a href="servicios/eliminar/<?php echo $key['id_servicio'] ?>" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="public/admin/images/bdelete.png" /></a>
+                                <a href="<?php echo site_url('servicios/editar/'.$key['id_servicio']) ?>" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a>
+                                <a href="<?php echo site_url('servicios/eliminar/'.$key['id_servicio']) ?>" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="<?php base_url('public/admin/images/bdelete.png')?>" /></a>
                                 
                             </td>
                         </tr>

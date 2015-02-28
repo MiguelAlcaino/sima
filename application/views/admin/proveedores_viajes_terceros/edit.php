@@ -1,8 +1,3 @@
-<link rel="stylesheet" type="text/css" href="public/admin/jquery-ui-1.11.2.custom/jquery-ui.css"/>
-<link rel="stylesheet" type="text/css" href="public/admin/datetimepicker/jquery.datetimepicker.css"/ >
-<script type="text/javascript" src="public/admin/jquery-ui-1.11.2.custom/jquery-ui.js"></script>
-<script src="public/admin/datetimepicker/jquery.datetimepicker.js"></script>
-
 <style>
 
 </style>
@@ -31,7 +26,7 @@
             <?php echo validation_errors(); ?>
             </div>
         <?php } ?>
-      <form method="post" action="<?php echo site_url('proveedores_viajes_terceros/add')?>" enctype="multipart/form-data">
+      <form method="post" action="<?php echo site_url('proveedores_viajes_terceros/update/'.$data[0]['id'])?>" enctype="multipart/form-data">
         
                  
                 <div style="float:left; width:900px">
@@ -74,7 +69,7 @@
                               <td><?php echo $conductor['rut']?></td>
                               <td><?php echo $conductor['patente_camion_asociada']?></td>
                               <td><?php echo $conductor['patente_rampla_asociada']?></td>
-                              <td><img src='public/admin/images/bdelete.png' style='cursor: pointer;' onclick='eliminar_fila(this)'></td>
+                              <td><img src='public/admin/images/bdelete.png' style='cursor: pointer;' onclick='eliminar_fila_edit(this,<?php echo $conductor['id']?>)'></td>
                             </tr>
                           <?php endforeach;?>
                         </tbody>
@@ -105,9 +100,25 @@
     contador_filas--;
     $("#contador_filas").val(contador_filas);
   }
+
+  function eliminar_fila_edit(elemento,id){
+      $.ajax({
+          url: "<?php echo site_url('ajax/deleteConductorProveedorTerceros')?>",
+          method: "POST",
+          data:{
+              conductor_id: id
+          },
+          success: function(data){
+              $(elemento).parent().parent().remove();
+              contador_filas--;
+              $("#contador_filas").val(contador_filas);
+          }
+      });
+
+  }
   
   $("#anadir_conductor").click(function() {
-          $('<a href="ajax/anadir_conductor"></a>').facebox({
+          $('<a href="<?php echo site_url('ajax/anadir_conductor/in_edit/'.$data[0]['id'])?>"></a>').facebox({
             overlayShow: true
           }).click();
 

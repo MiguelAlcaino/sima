@@ -9,8 +9,8 @@
         <h2> Clientes</h2>
         
         <ul>
-            <li><a href="clientes/">Listar</a></li>
-            <li><a href="clientes/nuevo">Nuevo Cliente</a></li>
+            <li><a href="<?php echo site_url('clientes')?>">Listar</a></li>
+            <li><a href="<?php echo site_url('clientes/nuevo')?>">Nuevo Cliente</a></li>
         </ul>
     </div>		
 

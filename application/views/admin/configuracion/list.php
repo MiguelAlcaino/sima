@@ -7,7 +7,7 @@
         <h2>Configuración de Sitio</h2>
         
         <ul class="tabs">
-            <li><a href="configuracion">Listar</a></li>
+            <li><a href="<?php echo site_url('configuracion')?>">Listar</a></li>
         </ul>
     </div>		
     
@@ -41,7 +41,7 @@
                                 <td style="padding:4px"><?php echo $key['nombre_configuracion'] ?></td>
                                 <td><?php echo $key['valor_configuracion']?></td>
                                 <td class="options">
-                                    <a href="configuracion/edit/<?php echo $key['id_configuracion'] ?>" class="tip" title="Editar"><img src="public/admin/images/bedit.png"/></a>
+                                    <a href="<? echo site_url('configuracion/edit/'.echo $key['id_configuracion']) ?>" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>"/></a>
                                 </td>
                             </tr>
                        <?php 

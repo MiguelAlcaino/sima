@@ -7,7 +7,7 @@
         <h2>Configuración de Sitio</h2>
         
         <ul>
-            <li><a href="configuracion">Listar</a></li>
+            <li><a href="<?php echo site_url('configuracion')?>">Listar</a></li>
         </ul>
     </div>		
 

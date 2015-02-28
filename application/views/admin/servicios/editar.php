@@ -7,8 +7,8 @@
         <h2> Servicios</h2>
         
         <ul>
-            <li><a href="servicios/">Listar</a></li>
-            <li><a href="servicios/nuevo">Nuevo Servicio</a></li>
+            <li><a href="<?php echo site_url('servicios')?>">Listar</a></li>
+            <li><a href="<?php echo site_url('servicios/nuevo')?>">Nuevo Servicio</a></li>
         </ul>
     </div>		
 

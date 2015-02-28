@@ -37,6 +37,7 @@
    <ul>
      <li><?php echo anchor("viajes/informeViajesPorCliente","Viajes por cliente")?></li>
      <li><?php echo anchor("viajes/informeViajesConductorPropio","Viajes por conductor propio")?></li>
+     <li><?php echo anchor("viajes/buscarViajesPorContenedor","Viajes por contenedor")?></li>
      <li><?php echo anchor("viajes/informeViajesTodos","Todos los viajes")?></li>
      
    </ul>

@@ -55,8 +55,8 @@
                             <td><?php echo $key['email']  ?></td>
                             <td><?php echo $key['nombre_provincia']  ?></td>
                             <td class="options">
-                                <a href="proveedores/editar/<?php echo $key['id_proveedor'] ?>" class="tip" title="Editar"><img src="public/admin/images/bedit.png" /></a>
-                                <a href="proveedores/eliminar/<?php echo $key['id_proveedor'] ?>" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="public/admin/images/bdelete.png" /></a>
+                                <a href="<?php echo site_url('proveedores/editar/'.$key['id_proveedor']) ?>" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a>
+                                <a href="<?php echo site_url('proveedores/eliminar/'.$key['id_proveedor'] ?>" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="<?php echo base_url('public/admin/images/bdelete.png')?>" /></a>
                                 
                             </td>
                         </tr>

@@ -97,13 +97,13 @@
               if(data.length > 0){
                 var html ='', sum=0;
                 $.each(data, function(i,item){
-                  html += '<tr class="rows"><td></td><td>'+item.numero+'</td><td>'+item.nombre_comercial+'</td><td style="text-align:right">'+item.monto+'</td><td style="text-align:center">'+item.fecha+'</td><td><a href="<?php echo site_url('facturas/editar')?>/'+item.id+'" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a>&nbsp; <a href="<?php echo site_url('facturas/eliminar')?>/'+item.id+'" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="<?php echo base_url('public/admin/images/bdelete.png')?>" /></a>&nbsp; <a href="<?php echo site_url('facturas/imprimir_factura')?>/'+item.id+'" class="tip"  title="Imprimir"><img src="<?php echo base_url('public/admin/images/pdf.png')?>" /></a></td></tr>';
+                  html += '<tr class="rows"><td></td><td>'+item.numero+'</td><td>'+item.nombre_comercial+'</td><td style="text-align:right">$'+new Intl.NumberFormat().format(item.monto)+'</td><td style="text-align:center">'+item.fecha+'</td><td><a href="<?php echo site_url('facturas/editar')?>/'+item.id+'" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a>&nbsp; <a href="<?php echo site_url('facturas/eliminar')?>/'+item.id+'" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="<?php echo base_url('public/admin/images/bdelete.png')?>" /></a>&nbsp; <a href="<?php echo site_url('facturas/imprimir_factura')?>/'+item.id+'" class="tip"  title="Imprimir"><img src="<?php echo base_url('public/admin/images/pdf.png')?>" /></a></td></tr>';
                   
                   sum = sum + parseFloat(item.monto);
                   
                 });
                 
-                $(".total_pe").html("<b>"+sum.toFixed(0)+"</b>");
+                $(".total_pe").html("<b>$"+new Intl.NumberFormat().format(sum.toFixed(0))+"</b>");
                 $(".sortable_list_pen tbody").html(html);
                 $(".sortable_list_pen").trigger("update");
                 var sorting = [[1,0]]; 

@@ -156,9 +156,10 @@
             $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
           }
         });
-        
+
         $('#fecha_origen, #fecha_destino').datetimepicker({
-          format:'Y-m-d H:i'
+            format:'Y-m-d',
+            timepicker:false
         });
         
         $('#conductor_id').change(function(){

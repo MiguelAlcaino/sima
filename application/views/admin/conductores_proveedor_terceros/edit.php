@@ -35,7 +35,14 @@
                     
                       
                   <div class="ui-widget">
-                    
+                      <p><label>Proveedor de viajes</label><br />
+                          <select name="proveedor_viajes_terceros_id">
+                              <?php foreach($proveedores_viajes_terceros as $proveedor_viaje_tercero):?>
+                                  <option <?php echo ($proveedor_viaje_tercero['id'] == $data[0]['proveedor_viajes_terceros_id']) ? 'selected=selected' : ''?> value="<?php echo $proveedor_viaje_tercero['id']?>"><?php echo $proveedor_viaje_tercero['nombre_proveedor']?></option>
+                              <?php endforeach?>
+                          </select>
+                      </p>
+
                     <p><label>Identificador del conductor</label><br /><input value="<?php echo $data[0]['identificador']?>" type="text" name="identificador" size="55" class="text" ></p>
                     
                     <p><label>Nombre</label><br /> <input value="<?php echo $data[0]['nombre']?>" type="text" name="nombre" size="55" class="text" ></p>

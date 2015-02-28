@@ -7,8 +7,8 @@
         <h2> Productos</h2>
         
         <ul>
-            <li><a href="productos/">Listar</a></li>
-            <li><a href="productos/nuevo">Nuevo Producto</a></li>
+            <li><a href="<?php echo site_url('productos')?>">Listar</a></li>
+            <li><a href="<?php echo site_url('productos/nuevo')?>">Nuevo Producto</a></li>
         </ul>
     </div>		
 

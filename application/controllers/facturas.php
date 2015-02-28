@@ -276,7 +276,7 @@ foreach($detail as $key => $value){
   $html = '<style>
   p{
     color: '.$color_texto.';
-    font-size: '.$tamano_fuente_detalle.';
+
   }
   </style>
   <p>'.$value['descripcion'].'</p>';

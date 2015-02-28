@@ -13,7 +13,58 @@ class Viajes_model extends CI_Model
     $this->db->insert("viajes", $array_datos);
     return $this->db->insert_id();
   }
-  
+
+    public function getViajesPropiosYTercerosByNumeroContenedor($numero_contenedor){
+        $query = $this->db->query("SELECT * from (
+                                  SELECT
+                                  v.id as 'id',
+                                  v.codigo_viaje as 'codigo_viaje',
+                                  v.cliente_id as 'cliente_id',
+                                  '3' as 'tipo_viaje',
+                                  v.fecha_origen as 'fecha_origen',
+                                  v.nave as 'nave',
+                                  v.conductor_id as 'conductor_id',
+                                  v.origen as 'origen',
+                                  v.destino as 'destino',
+                                  v.descripcion_carga as 'descripcion_carga',
+                                  v.numero_contenedor as 'numero_contenedor',
+                                  v.numero_guia as 'numero_guia',
+                                  v.valor_viaje as 'valor_viaje',
+                                  co.nombre as 'conductor_nombre',
+                                  co.apellido as 'conductor_apellido',
+                                  co.identificador as 'conductor_identificador'
+                              FROM viajes as v, conductores as co
+                              WHERE v.numero_contenedor LIKE '".$numero_contenedor."%'
+                              AND co.id = v.conductor_id
+
+                              UNION ALL
+                              SELECT
+                                  vt.id as 'id',
+                                  vt.codigo_viaje as 'codigo_viaje',
+                                  vt.cliente_id as 'cliente_id',
+                                  '4' as 'tipo_viaje',
+                                  vt.fecha_origen as 'fecha_origen',
+                                  vt.nave as 'nave',
+                                  vt.conductor_proveedor_tercero_id as 'conductor_id',
+                                  vt.origen as 'origen',
+                                  vt.destino as 'destino',
+                                  vt.descripcion_carga as 'descripcion_carga',
+                                  vt.numero_contenedor as 'numero_contenedor',
+                                  vt.numero_guia as 'numero_guia',
+                                  vt.valor_viaje as 'valor_viaje',
+                                  cpv.nombre as 'conductor_nombre',
+                                  cpv.apellidos as 'conductor_apellido',
+                                  cpv.identificador as 'conductor_identificador'
+                              FROM viajes_proveedores_terceros as vt, conductores_proveedor_viajes cpv
+                              WHERE vt.numero_contenedor LIKE '".$numero_contenedor."%'
+                              AND vt.conductor_proveedor_tercero_id = cpv.id
+                              )
+                              AS temp
+                              WHERE temp.numero_contenedor LIKE '".$numero_contenedor."%'
+                              ORDER BY temp.nave, temp.fecha_origen ASC");
+        return $query->result_array();
+    }
+
   public function getViajesPropiosYTercerosByConductorPropioId($conductor_id){
     $query = $this->db->query("SELECT 
                                   v.id as 'id',

@@ -43,7 +43,9 @@ class Conductores_proveedor_terceros extends CI_Controller
   }
   
    function editar($id){
+    $this->load->model('proveedores_viajes_terceros_model');
     $data['data'] = $this->conductores_proveedor_terceros_model->getConductorById($id);
+    $data['proveedores_viajes_terceros'] = $this->proveedores_viajes_terceros_model->getAll();
     $this->template->display('admin/conductores_proveedor_terceros/edit',$data);
   }
   
@@ -61,7 +63,7 @@ class Conductores_proveedor_terceros extends CI_Controller
     $this->conductores_proveedor_terceros_model->update($id, $array_datos);
     
     $this->session->set_flashdata('message', '<div class="message success">Se ha actualizado el registro correctamente</div>');
-    redirect('conductores_proveedor_terceros/editar/'.$id);
+    redirect('conductores_proveedor_terceros');
   }
   
   function eliminar($id){

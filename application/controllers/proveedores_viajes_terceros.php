@@ -66,10 +66,10 @@ class Proveedores_viajes_terceros extends CI_Controller
       'rut'                     => $this->input->post('rut')
     );
     
-    $this->proveedores_viajes_terceros->update($id, $array_datos);
+    $this->proveedores_viajes_terceros_model->update($id, $array_datos);
     
     $this->session->set_flashdata('message', '<div class="message success">Se ha actualizado el registro correctamente</div>');
-    redirect('proveedores_viajes_terceros/editar/'.$id);
+    redirect('proveedores_viajes_terceros');
   }
   
   function eliminar($id){

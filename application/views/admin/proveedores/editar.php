@@ -7,8 +7,8 @@
         <h2> Clientes</h2>
         
         <ul>
-            <li><a href="proveedores/">Listar</a></li>
-            <li><a href="proveedores/nuevo">Nuevo Cliente</a></li>
+            <li><a href="<?php echo site_url('proveedores')?>">Listar</a></li>
+            <li><a href="<?php echo site_url('proveedores/nuevo')?>">Nuevo Cliente</a></li>
         </ul>
     </div>		
 
