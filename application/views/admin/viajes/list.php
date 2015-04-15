@@ -146,7 +146,7 @@
         dates.not(this).datepicker("option", option, date);
       }
     });
-          $('.sortable_list_pen').tablesorter();
+          //$('.sortable_list_pen').tablesorter();
       
         </script>
         

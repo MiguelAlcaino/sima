@@ -30,23 +30,24 @@ $this->output->set_header("Content-Type: text/html; charset=UTF-8");
 <![endif]-->
 <!--[if IE]><script type="text/javascript" src="public/admin/js/excanvas.js"></script><![endif]-->
     <script type="text/javascript" src="<?php echo base_url('public/admin/js/jquery-1.11.1.min.js')?>"></script>
-<script type="text/javascript" src="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.js')?>"></script>
-<script type="text/javascript" src="<?php echo base_url('public/admin/datetimepicker/jquery.datetimepicker.js')?>"></script>
-<script type="text/javascript" src="<?php echo base_url('public/admin/js/jquery.tablesorter.min.js')?>"></script>
-<script type="text/javascript" src="public/admin/js/jquery.img.preload.js"></script>
-<script type="text/javascript" src="public/admin/js/jquery.filestyle.mini.js"></script>
-<script type="text/javascript" src="public/admin/js/jquery.wysiwyg.js"></script>
-<script type="text/javascript" src="public/admin/js/jquery.date_input.pack.js"></script>
-<script type="text/javascript" src="public/admin/js/facebox.js"></script>
-<script type="text/javascript" src="public/admin/js/jquery.select_skin.js"></script>
-<script type="text/javascript" src="public/admin/js/jquery.tablesorter.min.js"></script>
-<script type="text/javascript" src="public/admin/js/jquery.tablesorter.filer.js"></script>
-<script type="text/javascript" src="public/admin/js/jquery.tablesorter.pager.js"></script>
-<script type="text/javascript" src="public/admin/js/ajaxupload.js"></script>
-<script type="text/javascript" src="public/admin/js/jquery.pngfix.js"></script>
-<script type="text/javascript" src="public/admin/js/jquery.tipsy.js"></script>
-<script type="text/javascript" src="public/admin/js/jquery.validate.js"></script>
-<script type="text/javascript" src="public/admin/js/custom.js"></script>
+    <script type="text/javascript" src="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.js')?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('public/admin/datetimepicker/jquery.datetimepicker.js')?>"></script>
+
+    <script type="text/javascript" src="public/admin/js/jquery.img.preload.js"></script>
+    <script type="text/javascript" src="public/admin/js/jquery.filestyle.mini.js"></script>
+    <script type="text/javascript" src="public/admin/js/jquery.wysiwyg.js"></script>
+    <script type="text/javascript" src="public/admin/js/jquery.date_input.pack.js"></script>
+    <script type="text/javascript" src="public/admin/js/facebox.js"></script>
+    <script type="text/javascript" src="public/admin/js/jquery.select_skin.js"></script>
+    <script type="text/javascript" src="public/admin/js/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="public/admin/js/jquery.tablesorter.filer.js"></script>
+    <script type="text/javascript" src="public/admin/js/jquery.tablesorter.pager.js"></script>
+    <script type="text/javascript" src="public/admin/js/ajaxupload.js"></script>
+    <script type="text/javascript" src="public/admin/js/jquery.pngfix.js"></script>
+    <script type="text/javascript" src="public/admin/js/jquery.tipsy.js"></script>
+    <script type="text/javascript" src="public/admin/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="public/admin/js/custom.js"></script>
+    <script type="text/javascript" src="public/bower_components/jquery.tablesorter/js/jquery.tablesorter.js"></script>
 
 </head>
 <body>
