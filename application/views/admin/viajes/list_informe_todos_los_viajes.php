@@ -22,7 +22,6 @@
         <?php 
         } ?>
         <form action="" method="post">
-            <input class="search" data-column="all" type="search">
             <table id="todos_los_viajes" cellpadding="0" cellspacing="0" width="100%" class="sortable_list_pen">
             
                 <thead>
@@ -31,11 +30,13 @@
                         <th>Fecha</th>
                         <th>Nave</th>
                         <th>Cliente</th>
+                        <th>N° Contenedor</th>
                         <th>Conductor</th>
                         <th>Origen</th>
                         <th>Destino</th>
                         <th>Descripción Carga</th>
                         <th>Propio o Tercero</th>
+                        <th class="no-sort">Opciones</th>
                     </tr>
                 </thead>
 
@@ -45,7 +46,7 @@
                 </tbody>
                 <tfoot>
                   <tr>
-                  <tr><td colspan="2"></td><td><b>Total</b></td><td colspan="3"></td><td class="total_pe" style="text-align:right; font-size:13px"><b>0.00</b></td><td colspan="1"></td></tr>
+                  <tr><td colspan="4"></td><td><b>Total</b></td><td colspan="3"></td><td class="total_pe" style="text-align:right; font-size:13px"><b>0.00</b></td><td colspan="1"></td></tr>
                 </tr>
                 </tfoot>
             </table>
@@ -88,13 +89,32 @@
                     html +="<td>"+value.fecha_origen+"</td>";
                     html +="<td>"+value.nave+"</td>";
                     html +="<td>"+value.clientes_nombre_comercial+"</td>";
+                    html +="<td>"+value.numero_contenedor+"</td>";
                     html +="<td>"+value.conductor_identificador+" - "+value.conductor_nombre+" "+value.conductor_apellido+"</td>";
                     html +="<td>"+value.origen+"</td>";
                     html +="<td>"+value.destino+"</td>";
                     html +="<td>"+value.descripcion_carga+"</td>";
                     html +="<td>"+((value.tipo_viaje == 3) ? "Propio" : "Tercero")+"</td>";
+                    if(value.tipo_viaje == 3){
+                        html +='<td><a href="<?php echo site_url('viajes/editar')?>/'+value.id+'" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a></td>';
+                    }else{
+                        html +='<td><a href="<?php echo site_url('viajes_proveedores_terceros/editar')?>/'+value.id+'" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a></td>';
+                    }
+
+
                     html +="</tr>"
                     $('#todos_los_viajes tbody').append(html);
+                });
+                $('.sortable_list_pen').DataTable({
+                    "order" : [[0,"desc"]],
+                    "columnDefs": [ {
+                        "targets": 'no-sort',
+                        "orderable": false}],
+                    "paging" : false,
+                    "info" : false,
+                    "language": {
+                        "sSearch" : "Buscar:"
+                    }
                 });
             }
         });
@@ -164,9 +184,4 @@
             dates.not(this).datepicker("option", option, date);
         }
     });
-    $('.sortable_list_pen').tablesorter();
-
-
-
-    //$('.sortable_list_pen').tablesorter();
 </script>

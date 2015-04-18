@@ -24,6 +24,7 @@ $this->output->set_header("Content-Type: text/html; charset=UTF-8");
     @import url("public/admin/css/date_input.css");
     @import url("<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.css')?>");
     @import url("<?php echo base_url('public/admin/datetimepicker/jquery.datetimepicker.css')?>");
+    @import url("<?php echo base_url('public/bower_components/datatables/media/css/jquery.dataTables.min.css')?>")
 </style>
 <!--[if lt IE 8]>
     <style type="text/css" media="all">@import url("public/admin/css/ie.css");</style>
@@ -39,15 +40,12 @@ $this->output->set_header("Content-Type: text/html; charset=UTF-8");
     <script type="text/javascript" src="public/admin/js/jquery.date_input.pack.js"></script>
     <script type="text/javascript" src="public/admin/js/facebox.js"></script>
     <script type="text/javascript" src="public/admin/js/jquery.select_skin.js"></script>
-    <script type="text/javascript" src="public/admin/js/jquery.tablesorter.min.js"></script>
-    <script type="text/javascript" src="public/admin/js/jquery.tablesorter.filer.js"></script>
-    <script type="text/javascript" src="public/admin/js/jquery.tablesorter.pager.js"></script>
     <script type="text/javascript" src="public/admin/js/ajaxupload.js"></script>
     <script type="text/javascript" src="public/admin/js/jquery.pngfix.js"></script>
     <script type="text/javascript" src="public/admin/js/jquery.tipsy.js"></script>
     <script type="text/javascript" src="public/admin/js/jquery.validate.js"></script>
     <script type="text/javascript" src="public/admin/js/custom.js"></script>
-    <script type="text/javascript" src="public/bower_components/jquery.tablesorter/js/jquery.tablesorter.js"></script>
+    <script type="text/javascript" src="public/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
 
 </head>
 <body>
