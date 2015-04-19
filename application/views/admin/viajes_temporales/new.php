@@ -239,9 +239,23 @@
                 method: "POST",
                 success: function(data){
                     window.location = "<?php echo site_url("viajes/editar")?>/"+JSON.parse(data).viaje_id;
+                    button.prop("disabled",false);
                 }
             });
-            button.prop("disabled",false);
+
+        });
+        $("#convertir_tercero").click(function(){
+            var button = $(this);
+            button.prop("disabled",true);
+            $.ajax({
+                url: "<?php echo site_url("ajax/convertirViajeATercero")?>",
+                data: $('#form_viaje').serializeArray(),
+                method: "POST",
+                success: function(data){
+                    window.location = "<?php echo site_url("viajes_proveedores_terceros/editar")?>/"+JSON.parse(data).viaje_tercero_id;
+                    button.prop("disabled",false);
+                }
+            });
         });
         </script>
         

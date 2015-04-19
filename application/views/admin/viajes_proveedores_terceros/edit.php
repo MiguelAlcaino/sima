@@ -226,7 +226,9 @@
 
 <script type="text/javascript">
 
-
+        str = $('#fecha_origen').val();
+        date = str.substr(0, 10);
+        date = date.split("-");
 
         //Esconder input monto abonado
         if($('input[type=radio][name=esta_abonado]').filter(":checked").val() == 0){
@@ -406,9 +408,11 @@
                 }
                 $('#conductor_id').append(option);
                 
-                actualizarPatentes();
-                escribirIdentificadorViaje();
+
+
               });
+            actualizarPatentes();
+            escribirIdentificadorViaje();
             }
           });
           

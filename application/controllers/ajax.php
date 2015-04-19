@@ -696,6 +696,36 @@ class Ajax extends CI_Controller
 		$data['value'] = json_encode($this->presupuestos->get_term());
 		$this->load->view("admin/ajax/responce",$data);
 	}
+
+    public function convertirViajeATercero(){
+        $this->load->model("viajes_model");
+        $this->load->model("viajes_proveedores_terceros_model");
+        $bandera_codigo = TRUE;
+        while ($bandera_codigo != FALSE) {
+            $codigo_viaje = $this->generateRandomString(6);
+            $bandera_codigo = $this->viajes_model->existeCodigoViaje($codigo_viaje);
+            $bandera_codigo = $this->viajes_proveedores_terceros_model->existeCodigoViaje($codigo_viaje);
+        }
+        $form = array();
+
+        $form['codigo_viaje'] = $codigo_viaje;
+        $form['cliente_id'] = $this->input->post('id_cliente');
+        $form['fecha_origen'] = $this->input->post('fecha_origen');
+        $form['nave'] = $this->input->post('nave');
+        $form['numero_contenedor'] = $this->input->post('numero_contenedor');
+        $form['origen'] = $this->input->post('origen');
+        $form['destino'] = $this->input->post('destino');
+        $form['numero_guia'] = $this->input->post('numero_guia');
+        $form['valor_viaje'] = $this->input->post('valor_viaje');
+        $form['notas_adicionales'] = $this->input->post('notas_adicionales');
+        $id = $this->viajes_proveedores_terceros_model->add($form);
+        $this->load->view("admin/ajax/responce",array(
+            "value" => json_encode(array(
+                'viaje_tercero_id' => $id
+            ))
+        ));
+    }
+
     public function convertirViajeAPropio(){
         $this->load->model("viajes_model");
         $this->load->model("viajes_proveedores_terceros_model");
@@ -745,7 +775,7 @@ class Ajax extends CI_Controller
 
     public function addConductorProveedorTercero($id_proveedor_tercero, $nombre_proveedor_tercero){
         $this->load->view("admin/conductores_proveedor_terceros/form_new_partial",array(
-            "nombre_proveedor_tercero" => $nombre_proveedor_tercero,
+            "nombre_proveedor_tercero" => urldecode($nombre_proveedor_tercero),
             "id_proveedor_tercero" => $id_proveedor_tercero
         ));
     }

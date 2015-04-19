@@ -53,10 +53,7 @@
                     
                       
                   <div class="ui-widget">
-                  <p>  
-                    <input type="button" class="submit largo" id="convertir_propio" value="Convertir a propio" />
-                    <input type="button" class="submit largo" id="convertir_tercero" value="Convertir a tercero" />
-                  </p>
+
                     <p><label>Buscar Cliente</label><br /> <input value="<?php echo $data[0]['nombre_comercial']." (".$data[0]['razon_social'].")"?>" required="required" type="text" name="cliente" id="clientes" class="text required"  value=""></p>       </div>
                     <span id="des_span">-----</span>
                     <input type="hidden" class="text" name="des" id="des" style="height:35px" />
@@ -99,7 +96,8 @@
 
                   </div>
                   <input type="submit" class="submit mid" name="agregar" value="Actualizar" />
-                  
+                  <input type="button" class="submit largo" id="convertir_propio" value="Convertir a propio" />
+                  <input type="button" class="submit largo" id="convertir_tercero" value="Convertir a tercero" />
                 </p>
                
              </form>
@@ -244,19 +242,33 @@
         //$('#button_form_box').click(function(){
         //  $('#form_viaje').submit();
         //});
-        
+
         $("#convertir_propio").click(function() {
-          $('<a href="<?php echo site_url('ajax/add_conductor_propio_a_viaje_temporal/'.$data[0]['id'])?>"></a>').facebox({
-            overlayShow: true
-          }).click();
+            var button = $(this);
+            button.prop("disabled",true);
+            $.ajax({
+                url: "<?php echo site_url("ajax/convertirViajeAPropio")?>",
+                data: $('#form_viaje').serializeArray(),
+                method: "POST",
+                success: function(data){
+                    window.location = "<?php echo site_url("viajes/editar")?>/"+JSON.parse(data).viaje_id;
+                    button.prop("disabled",false);
+                }
+            });
 
         });
-        
-        $("#convertir_tercero").click(function() {
-          $('<a href="<?php echo site_url('ajax/add_conductor_tercero_a_viaje_temporal/'.$data[0]['id'])?>"></a>').facebox({
-            overlayShow: true
-          }).click();
-
+        $("#convertir_tercero").click(function(){
+            var button = $(this);
+            button.prop("disabled",true);
+            $.ajax({
+                url: "<?php echo site_url("ajax/convertirViajeATercero")?>",
+                data: $('#form_viaje').serializeArray(),
+                method: "POST",
+                success: function(data){
+                    window.location = "<?php echo site_url("viajes_proveedores_terceros/editar")?>/"+JSON.parse(data).viaje_tercero_id;
+                    button.prop("disabled",false);
+                }
+            });
         });
         
         </script>
