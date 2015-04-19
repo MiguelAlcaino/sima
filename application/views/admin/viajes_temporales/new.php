@@ -1,8 +1,3 @@
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.css')?>"/>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/admin/datetimepicker/jquery.datetimepicker.css')?>"/ >
-<script src="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.js')?>"></script>
-<script src="<?php echo base_url('public/admin/datetimepicker/jquery.datetimepicker.js')?>"></script>
-<script src="<?php echo base_url('public/admin/autoNumeric/autoNumeric.js')?>"></script>
 <style>
   #primero_numero_contenedor{
     width: 46px;
@@ -96,6 +91,8 @@
                       </script>
                   </div>
                   <input type="submit" class="submit mid" name="agregar" value="Agregar" />
+                  <input type="button" class="submit largo" id="convertir_propio" value="Convertir a propio" />
+                  <input type="button" class="submit largo" id="convertir_tercero" value="Convertir a tercero" />
                   
                 </p>
                
@@ -233,6 +230,19 @@
         //$('#button_form_box').click(function(){
         //  $('#form_viaje').submit();
         //});
+        $("#convertir_propio").click(function() {
+            var button = $(this);
+            button.prop("disabled",true);
+            $.ajax({
+                url: "<?php echo site_url("ajax/convertirViajeAPropio")?>",
+                data: $('#form_viaje').serializeArray(),
+                method: "POST",
+                success: function(data){
+                    window.location = "<?php echo site_url("viajes/editar")?>/"+JSON.parse(data).viaje_id;
+                }
+            });
+            button.prop("disabled",false);
+        });
         </script>
         
         

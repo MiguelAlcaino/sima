@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 
 <?php
 $centinela = new Centinela();
@@ -13,19 +13,18 @@ $this->output->set_header("Content-Type: text/html; charset=UTF-8");
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=7" />
 <head>
-<base href="<?php echo site_url('')?>" />
+<base href="<?php echo base_url('')?>" />
 
 <title>Administrador : <?php echo NOMBRE_SITIO?></title>
-<style type="text/css" media="all">
-    @import url("public/admin/css/style.css");
-    @import url("public/admin/css/jquery.wysiwyg.css");
-    @import url("public/admin/css/facebox.css");
-    @import url("public/admin/css/visualize.css");
-    @import url("public/admin/css/date_input.css");
-    @import url("<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.css')?>");
-    @import url("<?php echo base_url('public/admin/datetimepicker/jquery.datetimepicker.css')?>");
-    @import url("<?php echo base_url('public/bower_components/datatables/media/css/jquery.dataTables.min.css')?>")
-</style>
+    <link rel="stylesheet" href="<?php echo base_url("public/admin/css/style.css")?>">
+    <link rel="stylesheet" href="<?php echo base_url("public/admin/css/jquery.wysiwyg.css")?>">
+    <link rel="stylesheet" href="<?php echo base_url("public/admin/css/facebox.css")?>">
+    <link rel="stylesheet" href="<?php echo base_url("public/admin/css/visualize.css")?>">
+    <link rel="stylesheet" href="<?php echo base_url("public/admin/css/date_input.css")?>">
+    <link rel="stylesheet" href="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.css')?>">
+    <link rel="stylesheet" href="<?php echo base_url('public/bower_components/datatables/media/css/jquery.dataTables.min.css')?>">
+    <link rel="stylesheet" href="<?php echo base_url('public/admin/datetimepicker/jquery.datetimepicker.css')?>">
+    <link rel="stylesheet" href="<?php echo base_url('public/admin/font-awesome/css/font-awesome.min.css')?>">
 <!--[if lt IE 8]>
     <style type="text/css" media="all">@import url("public/admin/css/ie.css");</style>
 <![endif]-->
@@ -33,7 +32,7 @@ $this->output->set_header("Content-Type: text/html; charset=UTF-8");
     <script type="text/javascript" src="<?php echo base_url('public/admin/js/jquery-1.11.1.min.js')?>"></script>
     <script type="text/javascript" src="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.js')?>"></script>
     <script type="text/javascript" src="<?php echo base_url('public/admin/datetimepicker/jquery.datetimepicker.js')?>"></script>
-
+    <script type="text/javascript" src="<?php echo base_url('public/admin/autoNumeric/autoNumeric.js')?>"></script>
     <script type="text/javascript" src="public/admin/js/jquery.img.preload.js"></script>
     <script type="text/javascript" src="public/admin/js/jquery.filestyle.mini.js"></script>
     <script type="text/javascript" src="public/admin/js/jquery.wysiwyg.js"></script>

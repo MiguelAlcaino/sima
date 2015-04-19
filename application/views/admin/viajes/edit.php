@@ -68,7 +68,7 @@
                         <?php foreach($conductores as $conductor):?>
                           <option patente_camion="<?php echo $conductor['patente_asociada']?>"  <?php echo ($conductor['id'] == $data[0]['conductor_id']) ? 'selected=selected' : ''?> identificador="<?php echo $conductor['identificador']?>" value="<?php echo $conductor['id']?>"><?php echo $conductor['identificador']?> - <?php echo $conductor['nombre']?> <?php echo $conductor['apellido']?></option>
                         <?php endforeach; ?>
-                      </select></p>
+                      </select> <span id="add_conductor_propio"><i class="fa fa-plus-square-o"></i></span></p>
                     
                     
                     
@@ -342,6 +342,12 @@
         //$('#button_form_box').click(function(){
         //  $('#form_viaje').submit();
         //});
+
+        $("#add_conductor_propio").click(function() {
+            $('<a href="<?php echo site_url('ajax/addConductorPropio')?>"></a>').facebox({
+                overlayShow: true
+            }).click();
+        });
         </script>
         
         

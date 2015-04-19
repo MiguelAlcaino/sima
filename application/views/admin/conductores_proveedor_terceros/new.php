@@ -1,12 +1,3 @@
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.css')?>"/>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/admin/datetimepicker/jquery.datetimepicker.css')?>"/ >
-<script type="text/javascript" src="<?php echo base_url('public/admin/jquery-ui-1.11.2.custom/jquery-ui.js')?>"></script>
-<script src="<?php echo base_url('public/admin/datetimepicker/jquery.datetimepicker.js')?>"></script>>
-
-<style>
-
-</style>
-
 <div class="block">
 
     <div class="block_head">

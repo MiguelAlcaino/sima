@@ -68,7 +68,7 @@
                         <?php foreach($proveedores_viajes_terceros as $proveedor_viaje_tercero):?>
                           <option <?php echo ($proveedor_viaje_tercero['id'] == $data[0]['proveedor_viajes_tercero_id']) ? 'selected=selected' : ''?> value="<?php echo $proveedor_viaje_tercero['id']?>"><?php echo $proveedor_viaje_tercero['nombre_proveedor']?></option>
                         <?php endforeach;?>
-                      </select>
+                      </select> <span id="add_proveedor_tercero"><i class="fa fa-plus-square-o"></i></span>
                     </p>
                   
                     <p><label>Selecccione Conductor</label><br /><?php //echo $data[0]['id']?>
@@ -77,7 +77,7 @@
                         <?php foreach($conductores as $conductor):?>
                           <option patente_camion="<?php echo $conductor['patente_camion_asociada']?>" patente_rampla="<?php echo $conductor['patente_rampla_asociada']?>" <?php echo ($conductor['id'] == $data[0]['conductor_proveedor_tercero_id']) ? 'selected=selected' : ''?> identificador="<?php echo $conductor['identificador']?>" value="<?php echo $conductor['id']?>"><?php echo $conductor['identificador']?> - <?php echo $conductor['nombre']?> <?php echo $conductor['apellidos']?></option>
                         <?php endforeach; ?>
-                      </select></p>
+                      </select> <span id="add_conductor_tercero"><i class="fa fa-plus-square-o"></i></span></p>
                     
                     
                     
@@ -425,6 +425,20 @@
           $('#segundo_numero_contenedor').val($('#numero_contenedor').val().substring(4,9));
           $('#tercero_numero_contenedor').val($('#numero_contenedor').val().substring(10,11));
         }
+
+    $("#add_proveedor_tercero").click(function(){
+        $('<a href="<?php echo site_url('ajax/addProveedorTercero')?>"></a>').facebox({
+            overlayShow: true
+        }).click();
+    });
+
+    $("#add_conductor_tercero").click(function(){
+        var id_proveedor_tercero = $('select[name=proveedor_viajes_tercero_id] option:selected').val();
+        var nombre_proveedor_tercero = $('select[name=proveedor_viajes_tercero_id] option:selected').text();
+        $('<a href="<?php echo site_url('ajax/addConductorProveedorTercero')?>'+'/'+id_proveedor_tercero+'/'+nombre_proveedor_tercero+'"></a>').facebox({
+            overlayShow: true
+        }).click();
+    });
 
         </script>
         

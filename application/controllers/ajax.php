@@ -1,24 +1,34 @@
 <?php
-class Ajax extends CI_Controller 
+class Ajax extends CI_Controller
 {
 	function __construct()
 	{
 		parent::__construct();
-		
+
 		$this->load->model('ms_model','ms');
         $this->load->helper('url');
 	}
 
+    protected function generateRandomString($length = 10) {
+        //$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        return $randomString;
+    }
+
 	function index()
 	{
-	
+
 	}
-	
+
 	function add_us()
 	{
 		$this->ms->add_usuarios_secciones();
 	}
-		
+
 	function delete_us()
 	{
 		$this->ms->delete_usuarios_secciones();
@@ -30,7 +40,7 @@ class Ajax extends CI_Controller
     $this->load->view("admin/ajax/responce",$data);
   }
   //getViajesPropiosYTerceros()
-  
+
   function viajesPropiosYTerceros(){
     $this->load->model("viajes_model");
     $data['value'] = json_encode($this->viajes_model->getViajesPropiosYTerceros());
@@ -62,11 +72,11 @@ class Ajax extends CI_Controller
 	function clientes()
 	{
 		$this->load->model('clientes_model','clientes');
-		
+
 		$data['value'] = json_encode($this->clientes->get_term($_POST['q']));
 		$this->load->view("admin/ajax/responce",$data);
 	}
-  
+
   function anadir_conductor(){
     $html = "<div id='popup' style='width:470px; height:506px' class='block'><h2>Agregar un conductor</h2>";
     $html .= '<div class="block">
@@ -78,7 +88,6 @@ class Ajax extends CI_Controller
     $html .='<p>
               <label>Identificador:</label> <input id="identificador" type="text" name="identificador" id="identificador" class="text required" />
             </p>
-            
             <p>
               <label>Nombre:</label><br /> <input id="nombre_conductor" type="text required" name="nombre" class="text" style="width:220px" />
             </p>
@@ -94,7 +103,6 @@ class Ajax extends CI_Controller
             <p>
               <label>Patente rampla asociada:</label><br /> <input id="patente_rampla_asociada" type="text required" name="patente_rampla_asociada" class="text" style="width:220px" />
             </p>
-            
             <p align="center"><input type="submit" class="submit mid" id="aceptar" value="Aceptar" /></p>
           ';
     $html .= '</form></div></div>';
@@ -152,6 +160,19 @@ class Ajax extends CI_Controller
       $data['value'] = json_encode(array('conductor_id' => $this->conductores_proveedor_terceros_model->add($this->input->post(null, true))));
       $this->load->view("admin/ajax/responce",$data);
   }
+
+    public function saveNewConductorPropio(){
+        $this->load->model('conductores_model');
+        $form = $this->input->post(null,true);
+        $form['fecha_destino'] = null;
+        $data['value'] = json_encode(
+            array(
+                'conductor_id' => $this->conductores_model->add($form)
+            )
+        );
+        $this->load->view("admin/ajax/responce",$data);
+    }
+
   public function deleteConductorProveedorTerceros(){
       $this->load->model('conductores_proveedor_terceros_model');
       $this->conductores_proveedor_terceros_model->delete($this->input->post('conductor_id'));
@@ -257,6 +278,9 @@ class Ajax extends CI_Controller
     $data['value'] = $html;
     $this->load->view("admin/ajax/responce",$data);
   }
+    public function addConductorPropio(){
+        $this->load->view('admin/conductores/form_new_partial');
+    }
   
   function add_conductor_propio_a_viaje_temporal($viaje_temporal_id){
     $html = "<div id='popup' style='width:470px; height:495px' class='block'><h2>Añadir nuevo conductor</h2>";
@@ -672,6 +696,69 @@ class Ajax extends CI_Controller
 		$data['value'] = json_encode($this->presupuestos->get_term());
 		$this->load->view("admin/ajax/responce",$data);
 	}
+    public function convertirViajeAPropio(){
+        $this->load->model("viajes_model");
+        $this->load->model("viajes_proveedores_terceros_model");
+        $bandera_codigo = TRUE;
+        while ($bandera_codigo != FALSE) {
+            $codigo_viaje = $this->generateRandomString(6);
+            $bandera_codigo = $this->viajes_model->existeCodigoViaje($codigo_viaje);
+            $bandera_codigo = $this->viajes_proveedores_terceros_model->existeCodigoViaje($codigo_viaje);
+        }
+        $form_original = $this->input->post("form");
+        //$form_original = unserialize($form_original);
+        $form = array();
 
+        $form['codigo_viaje'] = $codigo_viaje;
+        $form['cliente_id'] = $this->input->post('id_cliente');
+        $form['fecha_origen'] = $this->input->post('fecha_origen');
+        $form['nave'] = $this->input->post('nave');
+        $form['numero_contenedor'] = $this->input->post('numero_contenedor');
+        $form['origen'] = $this->input->post('origen');
+        $form['destino'] = $this->input->post('destino');
+        $form['numero_guia'] = $this->input->post('numero_guia');
+        $form['valor_viaje'] = $this->input->post('valor_viaje');
+        $form['notas_adicionales'] = $this->input->post('notas_adicionales');
+        $id = $this->viajes_model->add($form);
+
+        $this->load->view("admin/ajax/responce",array(
+            "value" => json_encode(array(
+                'viaje_id' => $id
+            ))
+        ));
+    }
+
+    public function addProveedorTercero(){
+        $this->load->view("admin/proveedores_viajes_terceros/form_new_partial");
+    }
+
+    public function saveNewProveedorTercero(){
+        $form = $this->input->post(null,true);
+        $this->load->model("proveedores_viajes_terceros_model");
+        $id = $this->proveedores_viajes_terceros_model->add($form);
+        $this->load->view("admin/ajax/responce",array(
+            "value" => json_encode(array(
+                'proveedor_tercero_id' => $id
+            ))
+        ));
+    }
+
+    public function addConductorProveedorTercero($id_proveedor_tercero, $nombre_proveedor_tercero){
+        $this->load->view("admin/conductores_proveedor_terceros/form_new_partial",array(
+            "nombre_proveedor_tercero" => $nombre_proveedor_tercero,
+            "id_proveedor_tercero" => $id_proveedor_tercero
+        ));
+    }
+
+    public function saveNewConductorProveedorTercero(){
+        $form = $this->input->post(null,true);
+        $this->load->model("conductores_proveedor_terceros_model");
+        $id = $this->conductores_proveedor_terceros_model->add($form);
+        $this->load->view("admin/ajax/responce",array(
+            'value' => json_encode(array(
+                'conductor_proveedor_tercero_id' => $id
+            ))
+        ));
+    }
 }
 ?>
