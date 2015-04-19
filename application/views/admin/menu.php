@@ -4,6 +4,13 @@
      <li><?php echo anchor("clientes","Lista de clientes")?></li>
    </ul>
  </li>
+ <li><a href="">Viajes</a>
+     <ul>
+         <li><?php echo anchor("viajes_temporales/nuevo","Nuevo viaje")?></li>
+         <li><?php echo anchor("viajes/informeViajesTodos","Lista de viajes")?></li>
+     </ul>
+ </li>
+ <!--
  <li><a href="">Viajes Propios</a>
    <ul>
      <li><?php echo anchor("viajes/nuevo","Nuevo Viaje")?></li>
@@ -19,6 +26,7 @@
      <li><?php echo anchor("conductores_proveedor_terceros","Conductores de terceros")?></li>
    </ul>
  </li>
+ -->
  <li><a href="">Facturación</a>
    <ul>
      <li><?php echo anchor("facturas/nueva","Nueva factura")?></li>

@@ -28,8 +28,8 @@
         <h2>Nuevo Viaje Temporal</h2>
         
         <ul>
-            <li><?php echo anchor("viajes_temporales", "Lista de viajes temporales")?></li>
-            <li class="active"><?php echo anchor("viajes_temporales/nuevo", "Nuevo viaje temporal")?></li>
+            <li><?php echo anchor("viajes_temporales/nuevo", "Nuevo viaje")?></li>
+            <li><?php echo anchor("viajes/informeViajesTodos","Lista de viajes")?></li>
         </ul>
     </div>    
 

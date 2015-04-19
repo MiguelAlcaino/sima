@@ -109,8 +109,8 @@ class Viajes_model extends CI_Model
                                   co.nombre as 'conductor_nombre',
                                   co.apellido as 'conductor_apellido',
                                   co.identificador as 'conductor_identificador'
-                              FROM viajes as v, conductores as co
-                              WHERE co.id = v.conductor_id
+                              FROM viajes as v
+                              LEFT JOIN conductores AS co ON co.id = v.conductor_id
                               
                               UNION ALL
                               SELECT 
@@ -131,13 +131,13 @@ class Viajes_model extends CI_Model
                                   cpv.apellidos as 'conductor_apellido',
                                   cpv.identificador as 'conductor_identificador'
                                   
-                              FROM viajes_proveedores_terceros as vt, conductores_proveedor_viajes cpv
-                              WHERE vt.conductor_proveedor_tercero_id = cpv.id
+                              FROM viajes_proveedores_terceros as vt
+                              LEFT JOIN conductores_proveedor_viajes AS cpv ON vt.conductor_proveedor_tercero_id = cpv.id
                               
                               )
                               AS temp
                               LEFT JOIN clientes AS cl ON cl.id_cliente = temp.cliente_id
-                              ORDER BY temp.nave, temp.fecha_origen ASC");
+                              ORDER BY temp.fecha_origen DESC");
     return $query->result_array();
   }
   

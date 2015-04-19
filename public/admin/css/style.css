@@ -1162,3 +1162,6 @@ div#todos_los_viajes_filter input{
     cursor: pointer;
     font-size: 20px;
 }
+td {
+    cursor: default;
+}

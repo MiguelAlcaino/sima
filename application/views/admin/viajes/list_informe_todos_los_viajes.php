@@ -7,8 +7,8 @@
         <h2>Lista de todos los viajes</h2>
         
         <ul>
-            <li><?php echo anchor("viajes/nuevo", "Nuevo viaje propio")?></li>            
-            <li><?php echo anchor("viajes_proveedores_terceros/nuevo", "Nuevo viaje tercero")?></li>
+            <li><?php echo anchor("viajes_temporales/nuevo", "Nuevo viaje")?></li>
+            <li><?php echo anchor("viajes/informeViajesTodos","Lista de viajes")?></li>
         </ul>
        
     </div>
@@ -80,7 +80,7 @@
             success: function(data){
                 $('#todos_los_viajes tbody').empty();
 
-
+                var html = "";
                 $.each(data, function(index, value){
                     //console.log(value);
                     descripcion = "Traslado "+((value.numero_contenedor == "") ? "" : "cont: "+value.numero_contenedor)+" "+( (value.nave == "") ? "" : "nave: "+value.nave )+" "+value.origen+" a "+value.destino+" "+ ( (value.numero_guia == "") ? "" : value.numero_guia )+" ("+value.codigo_viaje+")";
@@ -90,15 +90,31 @@
                     html +="<td>"+value.nave+"</td>";
                     html +="<td>"+value.clientes_nombre_comercial+"</td>";
                     html +="<td>"+value.numero_contenedor+"</td>";
-                    html +="<td>"+value.conductor_identificador+" - "+value.conductor_nombre+" "+value.conductor_apellido+"</td>";
+                    if(value.conductor_id != null && value.conductor_nombre != null){
+                        html +="<td>"+value.conductor_identificador+" - "+value.conductor_nombre+" "+value.conductor_apellido+"</td>";
+                    }else{
+                        html +="<td style='color:red; font-weight:bold;'>Sin conductor asociado</td>";
+                    }
                     html +="<td>"+value.origen+"</td>";
                     html +="<td>"+value.destino+"</td>";
-                    html +="<td>"+value.descripcion_carga+"</td>";
-                    html +="<td>"+((value.tipo_viaje == 3) ? "Propio" : "Tercero")+"</td>";
-                    if(value.tipo_viaje == 3){
-                        html +='<td><a href="<?php echo site_url('viajes/editar')?>/'+value.id+'" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a></td>';
+                    if(value.descripcion_carga != null){
+                        html +="<td>"+value.descripcion_carga+"</td>";
                     }else{
-                        html +='<td><a href="<?php echo site_url('viajes_proveedores_terceros/editar')?>/'+value.id+'" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a></td>';
+                        html +="<td></td>";
+                    }
+                    if(value.tipo_viaje == 3){
+                        html +='<td style="color:green; font-weight:bold;">Propio</td>';
+                    }else{
+                        html +='<td style="color:blue; font-weight:bold;">Tercero</td>';
+
+                    }
+
+                    if(value.tipo_viaje == 3){
+                        html +='<td><a href="<?php echo site_url('viajes/editar')?>/'+value.id+'" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a> &nbsp;';
+                        html += '<a href="<?php echo site_url('viajes/eliminar')?>/'+value.id+'" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="<?php echo base_url('public/admin/images/bdelete.png')?>" /></a> &nbsp;</td>';
+                    }else{
+                        html +='<td><a href="<?php echo site_url('viajes_proveedores_terceros/editar')?>/'+value.id+'" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a> &nbsp;';
+                        html += '<a href="<?php echo site_url('viajes_proveedores_terceros/eliminar')?>/'+value.id+'" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="<?php echo base_url('public/admin/images/bdelete.png')?>" /></a> &nbsp;</td>';
                     }
 
 
@@ -115,6 +131,10 @@
                     "language": {
                         "sSearch" : "Buscar:"
                     }
+                });
+                $('td').dblclick(function(){
+                    var url = $(this).parent().children('td:last').children('a:first').attr('href');
+                    window.location = url;
                 });
             }
         });
