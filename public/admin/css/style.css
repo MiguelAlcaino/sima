@@ -1143,13 +1143,12 @@ a:hover {
 .sortable_list_pen thead th{
     cursor: pointer;
 }
-div#todos_los_viajes_filter {
+div#todos_los_viajes_filter, div#lista_clientes_filter {
     float: left;
 }
-div#todos_los_viajes_filter input{
+div#todos_los_viajes_filter input, div#lista_clientes_filter input{
     height: 25px;
     width: 230px;
-}
 }
 
 #add_conductor_propio{

@@ -28,14 +28,14 @@
                     <tr>
                         
                         <th>Fecha</th>
-                        <th>Nave</th>
                         <th>Cliente</th>
-                        <th>N° Contenedor</th>
+                        <th>Nave</th>
                         <th>Conductor</th>
+                        <th>N° Contenedor</th>
+                        <th>N° guía</th>
+                        <th>Propio o Tercero</th>
                         <th>Origen</th>
                         <th>Destino</th>
-                        <th>Descripción Carga</th>
-                        <th>Propio o Tercero</th>
                         <th class="no-sort">Opciones</th>
                     </tr>
                 </thead>
@@ -46,7 +46,7 @@
                 </tbody>
                 <tfoot>
                   <tr>
-                  <tr><td colspan="4"></td><td><b>Total</b></td><td colspan="3"></td><td class="total_pe" style="text-align:right; font-size:13px"><b>0.00</b></td><td colspan="1"></td></tr>
+                  <tr><td colspan="10"></td></tr>
                 </tr>
                 </tfoot>
             </table>
@@ -87,20 +87,18 @@
                     html ="<tr>";
                     //html +="<td><input valor_viaje=\'"+value.valor_viaje+"\' descripcion=\'"+descripcion+"\' cantidad=\'1\' tipo_viaje=\'"+value.tipo_viaje+"\' class=\'viajes_no_facturados\' type=\'checkbox\' name=\'viajes_no_facturados[]\' value=\'"+value.id+"\' /></td>";
                     html +="<td>"+value.fecha_origen+"</td>";
-                    html +="<td>"+value.nave+"</td>";
                     html +="<td>"+value.clientes_nombre_comercial+"</td>";
-                    html +="<td>"+value.numero_contenedor+"</td>";
+                    html +="<td>"+value.nave+"</td>";
                     if(value.conductor_id != null && value.conductor_nombre != null){
                         html +="<td>"+value.conductor_identificador+" - "+value.conductor_nombre+" "+value.conductor_apellido+"</td>";
                     }else{
                         html +="<td style='color:red; font-weight:bold;'>Sin conductor asociado</td>";
                     }
-                    html +="<td>"+value.origen+"</td>";
-                    html +="<td>"+value.destino+"</td>";
-                    if(value.descripcion_carga != null){
-                        html +="<td>"+value.descripcion_carga+"</td>";
+                    html +="<td>"+value.numero_contenedor+"</td>";
+                    if(value.numero_guia == null || value.numero_guia == ''){
+                        html +="<td style='color:red; font-weight:bold;' >Sin n° guía</td>";
                     }else{
-                        html +="<td></td>";
+                        html +="<td>"+value.numero_guia+"</td>";
                     }
                     if(value.tipo_viaje == 3){
                         html +='<td style="color:green; font-weight:bold;">Propio</td>';
@@ -108,6 +106,8 @@
                         html +='<td style="color:blue; font-weight:bold;">Tercero</td>';
 
                     }
+                    html +="<td>"+value.origen+"</td>";
+                    html +="<td>"+value.destino+"</td>";
 
                     if(value.tipo_viaje == 3){
                         html +='<td><a href="<?php echo site_url('viajes/editar')?>/'+value.id+'" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a> &nbsp;';
@@ -116,7 +116,6 @@
                         html +='<td><a href="<?php echo site_url('viajes_proveedores_terceros/editar')?>/'+value.id+'" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a> &nbsp;';
                         html += '<a href="<?php echo site_url('viajes_proveedores_terceros/eliminar')?>/'+value.id+'" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="<?php echo base_url('public/admin/images/bdelete.png')?>" /></a> &nbsp;</td>';
                     }
-
 
                     html +="</tr>"
                     $('#todos_los_viajes tbody').append(html);

@@ -10,9 +10,6 @@
             <li <?php if($tab == '') echo 'class="active"'?>><?php echo anchor("clientes/index","Listar")?></li>
             <li <?php if($tab == 'nuevo') echo 'class="active"'?>><?php echo anchor("clientes/nuevo","Nuevo cliente")?></li>
         </ul>
-        <ul>
-            <li>Buscar: <input type="text" id="filtro" value="<?php echo $q; ?>"/></li>
-        </ul>
     </div>		
     
     <div class="block_content tab_content <?php if($tab != '') echo 'hide'?>" id="list">
@@ -24,11 +21,10 @@
 				} ?>
         <form action="" method="post">
         
-            <table cellpadding="0" cellspacing="0" width="100%" class="sortable_list">
+            <table id="lista_clientes" cellpadding="0" cellspacing="0" width="100%" class="sortable_list_pen">
             
                 <thead>
                     <tr>
-                    	<th width="10"></th>
                         <th>Nombre Comercial</th>
                         <th>Razón Social</th>
                         <th>RUT</th>
@@ -47,7 +43,6 @@
 					foreach($data as $key){
 					 ?>
                         <tr class="rows">
-                        	<td></td>
                             <td><?php echo $key['nombre_comercial'] ?></td>
                             <td><?php echo $key['razon_social']  ?></td>
                             <td><?php echo $key['nif_cif']  ?></td>
@@ -69,23 +64,9 @@
             </table>
             
         </form>
-        
-        <?php 
-		if(count($data) > 0){
-		?>
-        
-		<div class="pagination right" id="pager">
-            <a href="#" class="prev">«</a> <span id="pnumbers"></span> <a href="#" class="next">»</a>
-            <select class="pagesize">
-                    <option selected="selected"  value="10">10</option>
-        
-                    <option value="20">20</option>
-                    <option value="30">30</option>
-                    <option  value="40">40</option>
-                </select>
-        </div>
+
 		<script type="text/javascript">
-            $('.sortable_list').tablesorter();
+            //$('.sortable_list').tablesorter();
             /*
         	$(function () {
 				$("table.sortable_list").tablesorter({
@@ -99,10 +80,23 @@
 
 			});
 			*/
+            $('.sortable_list_pen').DataTable({
+                "order" : [[0,"asc"]],
+                "columnDefs": [ {
+                    "targets": 'no-sort',
+                    "orderable": false}],
+                "paging" : false,
+                "info" : false,
+                "language": {
+                    "sSearch" : "Buscar:"
+                }
+            });
+            $('td').dblclick(function(){
+                var url = $(this).parent().children('td:last').children('a:first').attr('href');
+                window.location = url;
+            });
         </script>
-        <?php 
-		}
-		?>
+
         
     </div>
     
