@@ -213,7 +213,8 @@
                       </script>
 
                   </div>
-                  <input type="submit" class="submit mid" value="Actualizar" />
+                    <input type="submit" class="submit mid" value="Actualizar" />
+                    <input type="button" class="submit largo" value="Convertir a propio" id="convertir_a_propio">
                 </p>
                
              </form>
@@ -443,6 +444,18 @@
             overlayShow: true
         }).click();
     });
+
+        $('#convertir_a_propio').click(function(){if(confirm("Al presiona Aceptar, el viaje será convertido a propio. Tenga en cuenta que perderá los datos asociados al conductor y al proveedor tercero, ¿Desea continuar?")) {
+            $.ajax({
+                url: "<?php echo site_url("viajes/add/delete/".$data[0]["id"])?>",
+                type: "POST",
+                data: $(this).parent().serializeArray(),
+                success: function(data){
+                    window.location = "<?php echo site_url("viajes/editar")?>/"+JSON.parse(data).viaje_propio_id
+                }
+            });
+        }
+        });
 
         </script>
         

@@ -36,7 +36,7 @@ class Viajes_proveedores_terceros extends CI_Controller
     $this->template->display('admin/viajes_proveedores_terceros/new',$data);
   }
   
-  public function add(){
+  public function add($action,$id_viaje_propio){
     
     $config_upload['upload_path'] = './public/uploads/';
     $config_upload['allowed_types'] = 'gif|jpg|png';
@@ -58,6 +58,7 @@ class Viajes_proveedores_terceros extends CI_Controller
         if(!$this->upload->do_upload($key)){
             $error_array[] = $this->upload->display_errors();
             $bandera_error_file = TRUE;
+            $data_files_array[$key] = null;
           }else{
              $data_files_array[$key] = $this->upload->data();
           }
@@ -97,9 +98,7 @@ class Viajes_proveedores_terceros extends CI_Controller
       'tipo_carga'  =>              $this->input->post("tipo_carga"),
       'descripcion_carga' =>        $this->input->post("descripcion_carga"),
       'numero_guia' =>              $this->input->post("numero_guia"),
-      'ruta_imagen_guia' =>         $data_files_array['ruta_imagen_guia']['file_name'], 
       'numero_interchange' =>       $this->input->post("numero_interchange"),
-      'ruta_imagen_interchange' =>  $data_files_array['ruta_imagen_interchange']['file_name'], 
       'esta_facturado' =>           $this->input->post("esta_facturado"),
       'esta_pagado' =>              $this->input->post("esta_pagado_por_cliente"),
       'esta_abonado' =>             $this->input->post("esta_abonado"),
@@ -113,12 +112,33 @@ class Viajes_proveedores_terceros extends CI_Controller
       'notas_adicionales' =>        $this->input->post("notas_adicionales"),
       'numero_contenedor' =>        $this->input->post("numero_contenedor")
     );
-    
+
+      foreach($data_files_array as $key => $file_array){
+          if(array_key_exists("file_name",$file_array)){
+              $array_datos[$key] = $data_files_array[$key]['file_name'];
+          }
+      }
+
+
+
+
+      //'ruta_imagen_interchange' =>  $data_files_array['ruta_imagen_interchange']['file_name'],
     $viajes_id = $this->viajes_proveedores_terceros_model->add($array_datos);
     $data['files'] = $data_files_array; 
     //$this->template->display('admin/viajes/new',$data);
     $this->session->set_flashdata('message', '<div class="message success">Se ha ingresado el registro correctamente</div>');
-    redirect("viajes_proveedores_terceros/editar/".$viajes_id);
+      if($action == 'delete'){
+          /** @var Viajes_model $viajes_model */
+          $viajes_model = $this->viajes_model;
+          $viajes_model->delete($id_viaje_propio);
+          $this->load->view("admin/ajax/responce",array(
+              'value' => json_encode(array(
+                  'viaje_proveedor_tercero_id' => $viajes_id
+              ))
+          ));
+      }else{
+          redirect("viajes_proveedores_terceros/editar/".$viajes_id);
+      }
   }
   
   public function editar($id){

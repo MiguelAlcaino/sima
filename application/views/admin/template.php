@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html>
-
 <?php
 $centinela = new Centinela();
 if(!$centinela->check(0, FALSE)){ redirect(''); }
-	
 // send raw HTTP headers to set the content type for MS IE
 $this->output->set_header("Content-Type: text/html; charset=UTF-8");
 //$this->output->set_title();
-
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=7" />
 <head>
 <base href="<?php echo base_url('')?>" />
-
 <title>Administrador : <?php echo NOMBRE_SITIO?></title>
     <link rel="stylesheet" href="<?php echo base_url("public/admin/css/style.css")?>">
     <link rel="stylesheet" href="<?php echo base_url("public/admin/css/jquery.wysiwyg.css")?>">
@@ -45,37 +41,23 @@ $this->output->set_header("Content-Type: text/html; charset=UTF-8");
     <script type="text/javascript" src="public/admin/js/jquery.validate.js"></script>
     <script type="text/javascript" src="public/admin/js/custom.js"></script>
     <script type="text/javascript" src="public/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-
 </head>
 <body>
 	<div id="hld">
-	
-		<div class="wrapper">		
-        
+		<div class="wrapper">
 			<div id="header">
 				<div class="hdrl"></div>
-
 				<div class="hdrr"></div>
-				
 				<h1><a href="#"><?php echo NOMBRE_SITIO ?></a></h1>
-				
 				<ul id="nav">
 					<?php echo $this->load->view($menu_nav)?>
 				</ul>
-				
 				<p class="user">Hola, <a href="cuentas"><?php echo $this->session->userdata("nombre");?></a> | <a href="usuarios/logout">Salir</a></p>
-
-			</div>		
-			
-			
+			</div>
 			<?php $this->load->view($content_template)?>
-			
-			
 			<div id="footer">
-			
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>

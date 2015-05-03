@@ -192,6 +192,7 @@
 
                   </div>
                   <input type="submit" class="submit mid" value="Actualizar" />
+                    <input type="button" class="submit largo" value="Convertir a tercero" id="convertir_a_tercero">
                 </p>
                
              </form>
@@ -348,6 +349,19 @@
                 overlayShow: true
             }).click();
         });
+
+        $('#convertir_a_tercero').click(function(){if(confirm("Al presiona Aceptar, el viaje será convertido a tercero. Tenga en cuenta que perderá los datos asociados al conductor, ¿Desea continuar?")) {
+                $.ajax({
+                    url: "<?php echo site_url("viajes_proveedores_terceros/add/delete/".$data[0]["id"])?>",
+                    type: "POST",
+                    data: $(this).parent().serializeArray(),
+                    success: function(data){
+                        window.location = "<?php echo site_url("viajes_proveedores_terceros/editar")?>/"+JSON.parse(data).viaje_proveedor_tercero_id
+                    }
+                });
+            }
+        });
+
         </script>
         
         

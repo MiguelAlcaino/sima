@@ -56,7 +56,7 @@
     $this->template->display('admin/viajes/new',$data);
   }
   
-  public function add(){
+  public function add($action,$viaje_tercero_id){
     
     $config_upload['upload_path'] = './public/uploads/';
     $config_upload['allowed_types'] = 'gif|jpg|png';
@@ -78,6 +78,7 @@
         if(!$this->upload->do_upload($key)){
             $error_array[] = $this->upload->display_errors();
             $bandera_error_file = TRUE;
+            $data_files_array[$key] = null;
           }else{
              $data_files_array[$key] = $this->upload->data();
           }
@@ -112,9 +113,9 @@
       'tipo_carga'  =>              $this->input->post("tipo_carga"),
       'descripcion_carga' =>        $this->input->post("descripcion_carga"),
       'numero_guia' =>              $this->input->post("numero_guia"),
-      'ruta_imagen_guia' =>         $data_files_array['ruta_imagen_guia']['file_name'], 
+      //'ruta_imagen_guia' =>         $data_files_array['ruta_imagen_guia']['file_name'],
       'numero_interchange' =>       $this->input->post("numero_interchange"),
-      'ruta_imagen_interchange' =>  $data_files_array['ruta_imagen_interchange']['file_name'], 
+      //'ruta_imagen_interchange' =>  $data_files_array['ruta_imagen_interchange']['file_name'],
       'esta_facturado' =>           $this->input->post("esta_facturado"),
       'esta_pagado' =>              $this->input->post("esta_pagado"),
       'esta_abonado' =>             $this->input->post("esta_abonado"),
@@ -123,15 +124,34 @@
       'kilometros_tramo' =>         $this->input->post("kilometros_tramo"),
       'petroleo_gastado' =>         $this->input->post("petroleo_gastado"),
       'numero_guia_petroleo' =>     $this->input->post("numero_guia_petroleo"),
-      'ruta_imagen_guia_petroleo' =>$data_files_array['ruta_imagen_guia_petroleo']['file_name'],
+      //'ruta_imagen_guia_petroleo' =>$data_files_array['ruta_imagen_guia_petroleo']['file_name'],
       'notas_adicionales' =>        $this->input->post("notas_adicionales"),
       'numero_contenedor' =>        $this->input->post("numero_contenedor")
     );
-    
+
+      foreach($data_files_array as $key => $file_array){
+          if(array_key_exists("file_name",$file_array)){
+              $array_datos[$key] = $data_files_array[$key]['file_name'];
+          }
+      }
+
     $viajes_id = $this->viajes_model->add($array_datos);
     $data['files'] = $data_files_array; 
     //$this->template->display('admin/viajes/new',$data);
-    redirect("viajes/editar/".$viajes_id);
+      if($action == 'delete'){
+          $this->load->model("viajes_proveedores_terceros_model");
+          /** @var Viajes_proveedores_terceros_model $viajes_proveedores_terceros_model */
+          $viajes_proveedores_terceros_model = $this->viajes_proveedores_terceros_model;
+          $viajes_proveedores_terceros_model->delete($viaje_tercero_id);
+          $this->load->view("admin/ajax/responce",array(
+              'value' => json_encode(array(
+                  'viaje_propio_id' => $viajes_id
+              ))
+          ));
+      }else{
+          redirect("viajes/editar/".$viajes_id);
+      }
+
   }
 
   public function editar($id){
