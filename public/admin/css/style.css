@@ -1164,3 +1164,14 @@ div#todos_los_viajes_filter input, div#lista_clientes_filter input{
 td {
     cursor: default;
 }
+.pago_conductor{
+    cursor: pointer;
+}
+.filtro_conductor_pago_anticipo{
+    float: left;
+    margin-left: 25px;
+}
+.filtro_conductor_pago_anticipo span{
+    font-size: 12px;
+    font-weight: bold;
+}

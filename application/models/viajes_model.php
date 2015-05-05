@@ -242,7 +242,10 @@ class Viajes_model extends CI_Model
                               ORDER BY temp.nave, temp.fecha_origen ASC");
     return $query->result_array();
   }
-  
+
+    /**
+     * @return array
+     */
   public function get_all(){
     $query = $this->db->query("SELECT
                         v.*,

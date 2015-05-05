@@ -90,7 +90,12 @@
                     html +="<td>"+value.clientes_nombre_comercial+"</td>";
                     html +="<td>"+value.nave+"</td>";
                     if(value.conductor_id != null && value.conductor_nombre != null){
-                        html +="<td>"+value.conductor_identificador+" - "+value.conductor_nombre+" "+value.conductor_apellido+"</td>";
+                        if(value.tipo_viaje == 3){
+                            html +="<td>"+value.conductor_identificador+" - "+value.conductor_nombre+" "+value.conductor_apellido+" <i title='Pagar anticipo' id_conductor=\""+value.conductor_id+"\" id_viaje=\""+value.id+"\" class=\"fa fa-usd pago_conductor\"></i></td>";
+                        }else{
+                            html +="<td>"+value.conductor_identificador+" - "+value.conductor_nombre+" "+value.conductor_apellido+"</td>";
+                        }
+
                     }else{
                         html +="<td style='color:red; font-weight:bold;'>Sin conductor asociado</td>";
                     }
@@ -135,6 +140,7 @@
                     var url = $(this).parent().children('td:last').children('a:first').attr('href');
                     window.location = url;
                 });
+                initPagoConductor();
             }
         });
     }
@@ -203,4 +209,13 @@
             dates.not(this).datepicker("option", option, date);
         }
     });
+    function initPagoConductor() {
+        $(".pago_conductor").click(function () {
+            var id_conductor = $(this).attr("id_conductor");
+            var id_viaje = $(this).attr("id_viaje");
+            $('<a href="<?php echo site_url('ajax/addPagoAnticipoConductorAjax')?>/' + id_viaje + '/' + id_conductor + '"></a>').facebox({
+                overlayShow: true
+            }).click();
+        });
+    }
 </script>

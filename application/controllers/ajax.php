@@ -790,5 +790,29 @@ class Ajax extends CI_Controller
             ))
         ));
     }
+
+    /**
+     * @param null|integer $id_viaje
+     * @param null|integer $id_conductor
+     */
+    public function addPagoAnticipoConductorAjax($id_viaje = null, $id_conductor = null){
+        $this->load->model("viajes_model");
+        /** @var Viajes_model $viajes_model */
+        $viajes_model = $this->viajes_model;
+        $this->load->model("conductores_model");
+        /** @var Conductores_model $conductores_model */
+        $conductores_model = $this->conductores_model;
+        /** @var array $viajes */
+        $viajes = $viajes_model->get_all();
+        /** @var array $conductores */
+        $conductores = $conductores_model->getAll();
+
+        $this->load->view("admin/pago_anticipo_conductores/new_modal",array(
+            'id_viaje' => $id_viaje,
+            'id_conductor' => $id_conductor,
+            'viajes' => $viajes,
+            'conductores' => $conductores
+        ));
+    }
 }
 ?>

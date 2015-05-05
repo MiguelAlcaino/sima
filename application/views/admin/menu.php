@@ -10,6 +10,11 @@
          <li><?php echo anchor("viajes/informeViajesTodos","Lista de viajes")?></li>
      </ul>
  </li>
+ <li><a href="">Pagos</a>
+     <ul>
+         <li><?php echo anchor("pago_anticipo_conductores/index","Anticipos")?></li>
+     </ul>
+ </li>
  <!--
  <li><a href="">Viajes Propios</a>
    <ul>
