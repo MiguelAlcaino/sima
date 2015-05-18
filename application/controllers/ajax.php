@@ -814,5 +814,29 @@ class Ajax extends CI_Controller
             'conductores' => $conductores
         ));
     }
+
+    public function nuevoPago($tipo_viaje, $id_viaje){
+        switch($tipo_viaje){
+            case 'propio':
+                $this->load->model("viajes_model");
+                /** @var Viajes_model $viajes_model */
+                $viajes_model = $this->viajes_model;
+                $this->load->view("admin/pago_viajes/new_modal",array(
+                    'viajes' => $viajes_model->get_all(),
+                    'id_viaje' => $id_viaje
+                ));
+                break;
+            case 'tercero':
+
+                break;
+        }
+    }
+
+    public function addPagoAjax(){
+        $form = $this->input->post(null,true);
+        $this->load->model("pago_viajes_model");
+        /** @var Pago_viajes_model $pago_viajes_model */
+        $pago_viajes_model = $this->pago_viajes_model;
+        $pago_viajes_model->add($form);
+    }
 }
-?>

@@ -1175,3 +1175,8 @@ td {
     font-size: 12px;
     font-weight: bold;
 }
+
+.icon_option{
+    width: 16px;
+    height: 16px;
+}
