@@ -4,14 +4,14 @@
 
             <p><label>Viaje</label><br /> <select name="viaje_id">
                     <option value="null">Sin viaje asociado</option>
-                    <?php foreach($viajes as $viaje):?>
-                        <option <?php echo $viaje['id'] == $id_viaje ? 'selected': ''?> value="<?php echo $viaje['id']?>"><?php echo $viaje['codigo_viaje']?></option>
+                    <?php foreach($viajes_terceros as $viaje):?>
+                        <option <?php echo $viaje['id'] == $id_viaje_tercero ? 'selected': ''?> value="<?php echo $viaje['id']?>"><?php echo $viaje['codigo_viaje']?></option>
                     <?php endforeach?>
                 </select></p>
-            <input type="hidden" name="tipo_viaje" value="3">
+            <input type="hidden" name="tipo_viaje" value="4">
             <p><label>Pagado por</label><br> <input type="text" name="pagado_por" size="55" class="text"></p>
 
-            <p><label>Monto a pagar</label><br /> <input type="text" name="monto_num" size="55" class="text" >
+            <p><label>Monto a pagar al tercero</label><br /> <input type="text" name="monto_num" size="55" class="text" >
                 <input type="hidden" name="monto"></p>
 
             <p><label>Fecha de pago</label><br /> <input type="text" name="fecha_pago" size="55" class="text" ></p>

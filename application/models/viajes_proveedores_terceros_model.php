@@ -18,10 +18,10 @@ class Viajes_proveedores_terceros_model extends CI_Model
                         co.apellidos as conductor_apellido,
                         co.identificador as conductor_identificador,
                         co.rut as conductor_rut
-                        
-                        FROM viajes_proveedores_terceros v, clientes c , conductores_proveedor_viajes co
-                        WHERE v.cliente_id = c.id_cliente
-                        AND co.id = v.conductor_proveedor_tercero_id
+                        FROM viajes_proveedores_terceros v
+                        LEFT JOIN clientes c ON c.id_cliente = v.cliente_id
+                        LEFT JOIN conductores_proveedor_viajes co ON co.id = v.conductor_proveedor_tercero_id
+
                         ORDER BY v.id DESC
                        ");
     return $query->result_array();

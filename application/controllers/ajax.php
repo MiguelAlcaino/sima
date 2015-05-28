@@ -827,7 +827,13 @@ class Ajax extends CI_Controller
                 ));
                 break;
             case 'tercero':
-
+                $this->load->model("viajes_proveedores_terceros_model");
+                /** @var Viajes_proveedores_terceros_model $viajes_terceros_model */
+                $viajes_terceros_model = $this->viajes_proveedores_terceros_model;
+                $this->load->view("admin/pago_viajes/new_modal_tercero",array(
+                    'viajes_terceros' => $viajes_terceros_model->get_all(),
+                    'id_viaje_tercero' => $id_viaje
+                ));
                 break;
         }
     }
