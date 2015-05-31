@@ -65,6 +65,7 @@ class Viajes_proveedores_terceros_model extends CI_Model
     $this->db->where('id', $id);
     $this->db->update('viajes_proveedores_terceros', $array_datos); 
   }
+
   
   public function delete($id)
   { 
@@ -74,5 +75,3 @@ class Viajes_proveedores_terceros_model extends CI_Model
   
   
 }
-
-?>

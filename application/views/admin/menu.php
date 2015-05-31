@@ -15,6 +15,11 @@
          <li><?php echo anchor("pago_anticipo_conductores/index","Anticipos")?></li>
      </ul>
  </li>
+ <li><a href="">Reportes</a>
+     <ul>
+         <li><?php echo anchor("reportes/reporteCliente","Clientes")?></li>
+     </ul>
+ </li>
  <!--
  <li><a href="">Viajes Propios</a>
    <ul>

@@ -9,6 +9,27 @@
                     <?php endforeach?>
                 </select></p>
             <input type="hidden" name="tipo_viaje" value="4">
+            <div class="registro_pagos">
+                <div class="registro_pagos_titulo">Historial de pagos</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pagador por</th>
+                            <th>Fecha</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($pagos_viaje as $pago_viaje):?>
+                            <tr>
+                                <td><?php echo $pago_viaje['pagado_por']?></td>
+                                <td><?php echo $pago_viaje['fecha_pago']?></td>
+                                <td><td>$<?php echo number_format($pago_viaje['monto'], 0, '', '.')?></td></td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
             <p><label>Pagado por</label><br> <input type="text" name="pagado_por" size="55" class="text"></p>
 
             <p><label>Monto a pagar al tercero</label><br /> <input type="text" name="monto_num" size="55" class="text" >
@@ -20,7 +41,7 @@
 
             <p><label>Descripción</label><br /> <textarea name="descripcion"></textarea></p>
 
-            <p><input id="anadir_pago_btn" type="submit" class="submit largo" value="Registrar anticipo" /></p>
+            <p><input id="anadir_pago_btn" type="submit" class="submit largo" value="Registrar pago" /></p>
         </div>
     </div>
 </form>
@@ -40,5 +61,19 @@
     $('input[name=hora_pago]').datetimepicker({
         datepicker: false,
         format: 'H:i'
+    });
+    $('#form_nuevo_pago_viajes_propio').submit(function(e){
+        e.preventDefault();
+        $.ajax({
+            url: '<?php echo site_url("pago_viajes/add")?>',
+            type: "POST",
+            data: $(this).serializeArray(),
+            success: function(data){
+                $('.message').addClass('success');
+                $('.message').fadeIn();
+                $('.message').text("El pago ha sido registrado con éxito.");
+                $.facebox.close();
+            }
+        });
     });
 </script>

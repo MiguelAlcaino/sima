@@ -5,8 +5,8 @@ class Reportes extends CI_Controller
   {
     parent::__construct();
 		
-		$this->load->model("dominios_model",'dominios');
-		$this->load->model("palabras_model",'palabras');
+		//$this->load->model("dominios_model",'dominios');
+		//$this->load->model("palabras_model",'palabras');
 	}
 	
 	function index()
@@ -37,6 +37,9 @@ class Reportes extends CI_Controller
 		$data['fecha_fin']    = ($d != '') ? date("Y/m/d",time()) : '';
  		
 		$this->template->display('admin/reportes/informes',$data);
-	}		
+	}
+
+    function reporteCliente(){
+        $this->template->display("admin/reportes/reportes_cliente.php");
+    }
 }
-?>

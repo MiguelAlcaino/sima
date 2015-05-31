@@ -106,6 +106,8 @@ class Viajes_model extends CI_Model
                                   v.numero_contenedor as 'numero_contenedor',
                                   v.numero_guia as 'numero_guia',
                                   v.valor_viaje as 'valor_viaje',
+                                  v.guia_entregada as 'guia_entregada',
+                                  v.numero_interchange_entregado as 'interchange_entregado',
                                   co.nombre as 'conductor_nombre',
                                   co.apellido as 'conductor_apellido',
                                   co.identificador as 'conductor_identificador'
@@ -127,6 +129,8 @@ class Viajes_model extends CI_Model
                                   vt.numero_contenedor as 'numero_contenedor',
                                   vt.numero_guia as 'numero_guia',
                                   vt.valor_viaje as 'valor_viaje',
+                                  vt.guia_entregada as 'guia_entregada',
+                                  vt.numero_interchange_entregado as 'interchange_entregado',
                                   cpv.nombre as 'conductor_nombre',
                                   cpv.apellidos as 'conductor_apellido',
                                   cpv.identificador as 'conductor_identificador'

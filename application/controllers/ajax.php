@@ -1,6 +1,18 @@
 <?php
 class Ajax extends CI_Controller
 {
+    /**
+     * @var Pago_viajes_model
+     */
+    public $pago_viajes_model;
+    /**
+     * @var Viajes_model
+     */
+    public $viajes_model;
+    /**
+     * @var Viajes_proveedores_terceros_model
+     */
+    public $viajes_proveedores_terceros_model;
 	function __construct()
 	{
 		parent::__construct();
@@ -816,23 +828,29 @@ class Ajax extends CI_Controller
     }
 
     public function nuevoPago($tipo_viaje, $id_viaje){
+        $this->load->model("pago_viajes_model");
         switch($tipo_viaje){
             case 'propio':
                 $this->load->model("viajes_model");
                 /** @var Viajes_model $viajes_model */
                 $viajes_model = $this->viajes_model;
+                $pagos_viaje = $this->pago_viajes_model->getPagosViajesByViajeIdAndTipoViaje($id_viaje,3);
                 $this->load->view("admin/pago_viajes/new_modal",array(
                     'viajes' => $viajes_model->get_all(),
-                    'id_viaje' => $id_viaje
+                    'id_viaje' => $id_viaje,
+                    'pagos_viaje' => $pagos_viaje
                 ));
                 break;
             case 'tercero':
                 $this->load->model("viajes_proveedores_terceros_model");
                 /** @var Viajes_proveedores_terceros_model $viajes_terceros_model */
                 $viajes_terceros_model = $this->viajes_proveedores_terceros_model;
+
+                $pagos_viaje = $this->pago_viajes_model->getPagosViajesByViajeIdAndTipoViaje($id_viaje,4);
                 $this->load->view("admin/pago_viajes/new_modal_tercero",array(
                     'viajes_terceros' => $viajes_terceros_model->get_all(),
-                    'id_viaje_tercero' => $id_viaje
+                    'id_viaje_tercero' => $id_viaje,
+                    'pagos_viaje' => $pagos_viaje
                 ));
                 break;
         }
@@ -844,5 +862,29 @@ class Ajax extends CI_Controller
         /** @var Pago_viajes_model $pago_viajes_model */
         $pago_viajes_model = $this->pago_viajes_model;
         $pago_viajes_model->add($form);
+    }
+
+    public function cambiarEstadoDocumento(){
+        $this->load->model("viajes_model");
+        $this->load->model("viajes_proveedores_terceros_model");
+        $viaje_id = $this->input->post("viaje_id");
+        $tipo_documento = $this->input->post("tipo_documento");
+        $tipo_viaje = $this->input->post("tipo_viaje");
+        if($tipo_documento == 'guia_despacho'){
+            $viaje['guia_entregada'] = 1;
+        }else{
+            $viaje['numero_interchange_entregado'] = 1;
+        }
+        if($tipo_viaje == 3){
+            $this->viajes_model->update($viaje_id,$viaje);
+        }else{
+            $this->viajes_proveedores_terceros_model->update($viaje_id,$viaje);
+        }
+        $this->load->view("admin/ajax/responce",array(
+            'value' => json_encode(array(
+                'status' => 'success'
+            ))
+        ));
+
     }
 }

@@ -14,13 +14,11 @@
     </div>
 
     <div class="block_content">
-      <?php 
-    
-        if($this->session->flashdata('message'))
-        { ?>
-          <?php echo $this->session->flashdata('message'); ?>
-        <?php 
-        } ?>
+        <div class="message" style="display: none">
+        <?php if($this->session->flashdata('message')): ?>
+            <?php echo $this->session->flashdata('message'); ?>
+        <?php endif ?>
+        </div>
         <form action="" method="post">
             <table id="todos_los_viajes" cellpadding="0" cellspacing="0" width="100%" class="sortable_list_pen">
             
@@ -33,9 +31,11 @@
                         <th>Conductor</th>
                         <th>N° Contenedor</th>
                         <th>N° guía</th>
-                        <th>Propio o Tercero</th>
+                        <th>Tipo</th>
                         <th>Origen</th>
                         <th>Destino</th>
+                        <th>Interchange?</th>
+                        <th>Guía?</th>
                         <th class="no-sort">Opciones</th>
                     </tr>
                 </thead>
@@ -84,7 +84,7 @@
                 $.each(data, function(index, value){
                     //console.log(value);
                     descripcion = "Traslado "+((value.numero_contenedor == "") ? "" : "cont: "+value.numero_contenedor)+" "+( (value.nave == "") ? "" : "nave: "+value.nave )+" "+value.origen+" a "+value.destino+" "+ ( (value.numero_guia == "") ? "" : value.numero_guia )+" ("+value.codigo_viaje+")";
-                    html ="<tr>";
+                    html ="<tr tipo_viaje='"+value.tipo_viaje+"' viaje_id='"+value.id+"'>";
                     //html +="<td><input valor_viaje=\'"+value.valor_viaje+"\' descripcion=\'"+descripcion+"\' cantidad=\'1\' tipo_viaje=\'"+value.tipo_viaje+"\' class=\'viajes_no_facturados\' type=\'checkbox\' name=\'viajes_no_facturados[]\' value=\'"+value.id+"\' /></td>";
                     html +="<td>"+value.fecha_origen+"</td>";
                     html +="<td>"+value.clientes_nombre_comercial+"</td>";
@@ -113,6 +113,17 @@
                     }
                     html +="<td>"+value.origen+"</td>";
                     html +="<td>"+value.destino+"</td>";
+                    if(value.interchange_entregado == 0){
+                        html +="<td><center><img tipo_documento='interchange' class='changeImage' esta_entregado='false' style='width: 16px; cursor: pointer;' src='<?php echo base_url('public/admin/images/icondock/Cancel-26.png')?>' /></center></td>";
+                    }else{
+                        html +="<td><center><img tipo_documento='interchange' class='changeImage' esta_entregado='true' style='width: 16px; cursor: pointer;' src='<?php echo base_url('public/admin/images/icondock/Ok-26.png')?>' /></center></td>";
+                    }
+                    if(value.guia_entregada == 0){
+                        html +="<td><center><img tipo_documento='guia_despacho'class='changeImage' esta_entregado='false' style='width: 16px; cursor: pointer;' src='<?php echo base_url('public/admin/images/icondock/Cancel-26.png')?>' /></center></td>";
+                    }else{
+                        html +="<td><center><img tipo_documento='guia_despacho'class='changeImage' esta_entregado='true' style='width: 16px; cursor: pointer;' src='<?php echo base_url('public/admin/images/icondock/Ok-26.png')?>' /></center></td>";
+                    }
+
 
                     if(value.tipo_viaje == 3){
                         html +='<td><a href="<?php echo site_url('viajes/editar')?>/'+value.id+'" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a> &nbsp;';
@@ -144,6 +155,7 @@
                 });
                 initPagoConductor();
                 initOpciones();
+                initRegistroDocumento();
             }
         });
     }
@@ -230,4 +242,29 @@
             }).click();
         });
     }
+
+    function initRegistroDocumento(){
+        $('.changeImage').click(function(){
+            var img = $(this);
+            if($(this).attr('esta_entregado') == 'false'){
+                $.ajax({
+                    url: '<?php echo site_url("ajax/cambiarEstadoDocumento")?>',
+                    type: 'POST',
+                    data: {
+                        viaje_id : $(this).parent().parent().parent('tr').attr('viaje_id'),
+                        tipo_documento : $(this).attr('tipo_documento'),
+                        tipo_viaje: $(this).parent().parent().parent('tr').attr('tipo_viaje')
+                    },
+                    success: function(data){
+                        img.attr("src","<?php echo base_url('public/admin/images/icondock/Ok-26.png')?>");
+                    }
+                });
+
+
+            }
+
+        });
+    }
+
+
 </script>
