@@ -142,16 +142,15 @@ class Viajes_proveedores_terceros extends CI_Controller
   }
   
   public function editar($id){
+    $this->load->model("tramo_model");
     $data['data']=$this->viajes_proveedores_terceros_model->getViajeById($id);
     $data['provincias']  = $this->provincias->get_all();
     $data['comunas'] = $this->provincias->getComunas();
     $data['data'][0]['fecha_origen'] = substr($data['data'][0]['fecha_origen'], 0, 16);
     $data['data'][0]['fecha_destino'] = substr($data['data'][0]['fecha_destino'], 0, 16);
-    
-    
-    
     $data['proveedores_viajes_terceros'] = $this->proveedores_viajes_terceros_model->getAll();
     $data['conductores'] = $this->conductores_proveedor_terceros_model->getAllByIdProveedor($data['data'][0]['proveedor_viajes_tercero_id']);
+    $data['tramos'] = $this->tramo_model->getTramosByViajeIdAndTipoViaje($id,4);
     $this->template->display('admin/viajes_proveedores_terceros/edit',$data);
   }
   

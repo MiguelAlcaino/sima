@@ -887,4 +887,18 @@ class Ajax extends CI_Controller
         ));
 
     }
+
+    public function newTramoForm(){
+        $this->load->view("admin/ajax/responce", array(
+            'value' => json_encode(array(
+                'view' => $this->load->view('admin/viajes/tramo_form_partial',null,true)
+            ))
+        ));
+    }
+
+    public function addTramoAjax(){
+        $form = $this->input->post(null,true);
+        $this->load->model("tramo_model");
+        $this->tramo_model->add($form);
+    }
 }

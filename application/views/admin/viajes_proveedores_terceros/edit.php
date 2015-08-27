@@ -213,11 +213,19 @@
                       </script>
 
                   </div>
+                    <h1>Tramos del viaje</h1>
+                  <?php $this->view("admin/viajes/add_tramo_partial", array(
+                      'tramos' => $tramos,
+                      'viaje_id' => $data[0]['id']
+                  ))?>
+            <br>
+          <br>
                     <input type="submit" class="submit mid" value="Actualizar" />
                     <input type="button" class="submit largo" value="Convertir a propio" id="convertir_a_propio">
                 </p>
                
              </form>
+
           
     </div>
     

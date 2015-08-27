@@ -243,4 +243,3 @@
         $this->template->display('admin/viajes/searchViajesPorContenedor');
     }
 }
-?>

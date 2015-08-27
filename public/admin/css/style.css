@@ -774,7 +774,7 @@ a:hover {
 	vertical-align: middle;
 }
 			
-.block form input.submit {
+.block form input.submit , button.submit{
 	width: 85px;
 	height: 30px;
 	line-height: 30px;
@@ -791,12 +791,12 @@ a:hover {
 	vertical-align: middle;
 	}
 	
-.block form input.submit:hover {
+.block form input.submit:hover , button.submit:hover{
 	background: url(../images/btns_.gif) top center no-repeat;
 	text-shadow: 1px 1px 0 #b55f10;
 	}
 
-.block form input.submit.tiny {
+.block form input.submit.tiny, button.submit.tiny {
 	width: 105px;
 	height: 20px;
 	line-height: 20px;
@@ -809,19 +809,19 @@ a:hover {
 	background: url(../images/tiny.gif) top center no-repeat;
 	}
 	
-.block form input.submit.tiny:hover { background: url(../images/tiny_.gif) top center no-repeat; }
+.block form input.submit.tiny:hover, button.submit.tiny:hover { background: url(../images/tiny_.gif) top center no-repeat; }
 	
-.block form input.submit.mid { width: 115px; background: url(../images/btnm.gif) top center no-repeat; }
-.block form input.submit.mid:hover { background: url(../images/btnm_.gif) top center no-repeat; }
+.block form input.submit.mid, button.submit.mid { width: 115px; background: url(../images/btnm.gif) top center no-repeat; }
+.block form input.submit.mid:hover, button.submit.mid:hover { background: url(../images/btnm_.gif) top center no-repeat; }
 
-.block form input.submit.largo { width: 200px; background: url(../images/btn_large.png) top center no-repeat; }
-.block form input.submit.largo:hover { width: 200px; background: url(../images/btn_large_.png) top center no-repeat; }
+.block form input.submit.largo, button.submit.largo { width: 200px; background: url(../images/btn_large.png) top center no-repeat; }
+.block form input.submit.largo:hover, button.submit.largo:hover { width: 200px; background: url(../images/btn_large_.png) top center no-repeat; }
 
-.block form input.submit.long { width: 165px; background: url(../images/btnb.gif) top center no-repeat; }
-.block form input.submit.long:hover { background: url(../images/btnb_.gif) top center no-repeat; }
+.block form input.submit.long, button.submit.long { width: 165px; background: url(../images/btnb.gif) top center no-repeat; }
+.block form input.submit.long:hover, button.submit.long:hover { background: url(../images/btnb_.gif) top center no-repeat; }
 
-.block form input.submit.extra_long { width:220px; background: url(../images/btnb_long.gif) top center no-repeat; }
-.block form input.submit.extra_long:hover { background: url(../images/btnb_long_.gif) top center no-repeat; }
+.block form input.submit.extra_long, button.submit.extra_long { width:220px; background: url(../images/btnb_long.gif) top center no-repeat; }
+.block form input.submit.extra_long:hover, button.submit.extra_long:hover { background: url(../images/btnb_long_.gif) top center no-repeat; }
 
 /* Small blocks */
 

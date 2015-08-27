@@ -58,7 +58,7 @@ class Viajes_model extends CI_Model
                               FROM viajes_proveedores_terceros as vt, conductores_proveedor_viajes cpv
                               WHERE vt.numero_contenedor LIKE '".$numero_contenedor."%'
                               AND vt.conductor_proveedor_tercero_id = cpv.id
-                              )
+                     getTramosByViajeIdAndTipoViaje         )
                               AS temp
                               WHERE temp.numero_contenedor LIKE '".$numero_contenedor."%'
                               ORDER BY temp.nave, temp.fecha_origen ASC");
