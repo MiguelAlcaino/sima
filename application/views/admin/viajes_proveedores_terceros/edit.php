@@ -216,6 +216,7 @@
                     <h1>Tramos del viaje</h1>
                   <?php $this->view("admin/viajes/add_tramo_partial", array(
                       'tramos' => $tramos,
+                      'tipo_viaje' => 4,
                       'viaje_id' => $data[0]['id']
                   ))?>
             <br>

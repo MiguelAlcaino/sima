@@ -191,6 +191,11 @@
                       </script>
 
                   </div>
+                  <?php $this->view("admin/viajes/add_tramo_partial", array(
+                      'tramos' => $tramos,
+                      'tipo_viaje' => 3,
+                      'viaje_id' => $data[0]['id']
+                  ))?><br> <br>
                   <input type="submit" class="submit mid" value="Actualizar" />
                     <input type="button" class="submit largo" value="Convertir a tercero" id="convertir_a_tercero">
                 </p>

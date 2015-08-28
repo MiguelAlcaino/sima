@@ -155,11 +155,12 @@
   }
 
   public function editar($id){
-    
+    $this->load->model("tramo_model");
     $data['data'] = $this->viajes_model->getViajeById($id);
     $data['provincias']  = $this->provincias->get_all();
     $data['comunas'] = $this->provincias->getComunas();
     $data['conductores'] = $this->conductores_model->getAll();
+    $data['tramos'] = $this->tramo_model->getTramosByViajeIdAndTipoViaje($id,3);
     
     //Sacando segundos de la fecha
     $data['data'][0]['fecha_origen'] = substr($data['data'][0]['fecha_origen'], 0, 16);

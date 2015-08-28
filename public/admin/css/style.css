@@ -1180,3 +1180,11 @@ td {
     width: 16px;
     height: 16px;
 }
+
+.tramo_comentario{
+	height: 30px !important;
+}
+.alert{
+	color: red;
+	font-weight: bold;
+}
