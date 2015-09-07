@@ -128,14 +128,15 @@
                     if(value.tipo_viaje == 3){
                         html +='<td><a href="<?php echo site_url('viajes/editar')?>/'+value.id+'" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a> &nbsp;';
                         html += '<a href="<?php echo site_url('viajes/eliminar')?>/'+value.id+'" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="<?php echo base_url('public/admin/images/bdelete.png')?>" /></a> &nbsp;';
-                        html += '<a href="<?php echo site_url("ajax/nuevoPago")?>/propio/'+value.id+'" class="tip pago_viaje" title="Agregar pago"><img class="icon_option" src="<?php echo base_url('public/admin/images/icondock/coins.png')?>" /></a></td>';
+                        html += '<a href="<?php echo site_url("ajax/nuevoPago")?>/propio/'+value.id+'" class="tip pago_viaje" title="Agregar pago"><img class="icon_option" src="<?php echo base_url('public/admin/images/icondock/coins.png')?>" /></a> ';
+                        html += '<a href="<?php echo site_url("ajax/loadTrackingLog/")?>/viajes/'+value.id+'" rel="facebox"><img style="width: 20px;" src="<?php echo base_url('public/admin/images/file-extension-log-icon.png')?>" /></a></td>';
                     }else{
                         html +='<td><a href="<?php echo site_url('viajes_proveedores_terceros/editar')?>/'+value.id+'" class="tip" title="Editar"><img src="<?php echo base_url('public/admin/images/bedit.png')?>" /></a> &nbsp;';
                         html += '<a href="<?php echo site_url('viajes_proveedores_terceros/eliminar')?>/'+value.id+'" class="tip"  title="Eliminar" onclick="return delete_row()"><img src="<?php echo base_url('public/admin/images/bdelete.png')?>" /></a> &nbsp;';
-                        html += '<a href="<?php echo site_url("ajax/nuevoPago")?>/tercero/'+value.id+'" class="tip pago_viaje" title="Agregar pago"><img class="icon_option" src="<?php echo base_url('public/admin/images/icondock/coins.png')?>" /></a></td>';
+                        html += '<a href="<?php echo site_url("ajax/nuevoPago")?>/tercero/'+value.id+'" class="tip pago_viaje" title="Agregar pago"><img class="icon_option" src="<?php echo base_url('public/admin/images/icondock/coins.png')?>" /></a> ';
+                        html += '<a href="<?php echo site_url("ajax/loadTrackingLog/")?>/viajes_proveedores_terceros/'+value.id+'" rel="facebox"><img style="width: 20px;" src="<?php echo base_url('public/admin/images/file-extension-log-icon.png')?>" /></a></td>';
                     }
-
-                    html +="</tr>"
+                    html +="</tr>";
                     $('#todos_los_viajes tbody').append(html);
                 });
                 $('.sortable_list_pen').DataTable({
@@ -153,6 +154,7 @@
                     var url = $(this).parent().children('td:last').children('a:first').attr('href');
                     window.location = url;
                 });
+                $('a[rel*=facebox]').facebox();
                 initPagoConductor();
                 initOpciones();
                 initRegistroDocumento();

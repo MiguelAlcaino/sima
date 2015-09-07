@@ -30,7 +30,7 @@
         <div class="bheadl"></div>
         <div class="bheadr"></div>
         
-        <h2>Nuevo Viaje</h2>
+        <h2>Edición de viaje a terceros</h2>
         
         <ul>
             <li><?php echo anchor("viajes_proveedores_terceros", "Lista de Viajes de proveedores terceros")?></li>
@@ -233,8 +233,26 @@
     <div class="bendl"></div>
     <div class="bendr"></div>
 </div>
-
+<script type="text/javascript" src="<?php echo base_url('public/admin/js/activityTracker.js')?>"></script>
 <script type="text/javascript">
+        //Activity Tracking
+        setTipoEntidad("viajes_proveedores_terceros");
+        setIdEntidad(window.location.href.split("/")[7]);
+        setTipoTracking("edit");
+
+        $('#form_viaje').submit(function(e){
+            var form = $(this);
+            $.ajax({
+                url: "<?php echo site_url("ajax/saveTrackingChanges")?>",
+                type: "POST",
+                data:{
+                    'lista_cambios' : getListaCambios()
+                },
+                success: function(data){
+                    return true;
+                }
+            });
+        });
 
         str = $('#fecha_origen').val();
         date = str.substr(0, 10);
@@ -344,7 +362,7 @@
         
         $('#primero_numero_contenedor, #segundo_numero_contenedor, #tercero_numero_contenedor').change(function(){
           numero_contenedor=$('#primero_numero_contenedor').val()+$('#segundo_numero_contenedor').val()+"-"+$('#tercero_numero_contenedor').val()
-          $('#numero_contenedor').val(numero_contenedor.toUpperCase());
+          $('#numero_contenedor').val(numero_contenedor.toUpperCase()).trigger("change");
         });
         
         function capitalize(element)

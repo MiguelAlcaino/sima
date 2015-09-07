@@ -901,4 +901,43 @@ class Ajax extends CI_Controller
         $this->load->model("tramo_model");
         $this->tramo_model->add($form);
     }
+
+    public function saveTrackingChanges(){
+
+        $this->load->model("tracking_model");
+        $lista_cambios = $this->input->post("lista_cambios");
+        $array_tracking = array(
+            'user_id' => $this->session->userdata("id"),
+            'tipo_tracking' => $lista_cambios['tipo_tracking'],
+            'tipo_entidad' => $lista_cambios['tipo_entidad'],
+            'id_entidad' => $lista_cambios['id_entidad'],
+            'created' => date("Y-m-d H:i:s")
+        );
+        $id_tracking = $this->tracking_model->add($array_tracking);
+
+        foreach($lista_cambios['cambios'] as $cambio){
+            $cambio['tracking_id'] = $id_tracking;
+            $this->tracking_model->addDetalle($cambio);
+        }
+        $this->load->view("admin/ajax/responce", array(
+            'value' => json_encode(array(
+                'status' => 'success'
+            ))
+        ));
+    }
+
+    public function loadTrackingLog($tipo_entidad, $id_entidad){
+        $this->load->model("tracking_model");
+        $result = $this->tracking_model->getTrackingsByTipoEntidadAndIdEntidad($tipo_entidad,$id_entidad);
+        $array_cambios = array();
+        foreach($result as $cambio){
+            $array_cambios[$cambio['tracking_id']]['tipo_tracking'] = $cambio['tipo_tracking'];
+            $array_cambios[$cambio['tracking_id']]['tipo_entidad'] = $cambio['tipo_entidad'];
+            $array_cambios[$cambio['tracking_id']]['created'] = $cambio['created'];
+            $array_cambios[$cambio['tracking_id']]['tracking_detalles'][$cambio['tracking_detalle_id']] = $cambio;
+        }
+        $this->load->view("admin/tracking/tracking_list",array(
+            'result' => $array_cambios
+        ));
+    }
 }
