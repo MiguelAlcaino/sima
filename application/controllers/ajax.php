@@ -867,6 +867,7 @@ class Ajax extends CI_Controller
     public function cambiarEstadoDocumento(){
         $this->load->model("viajes_model");
         $this->load->model("viajes_proveedores_terceros_model");
+        $this->load->model("tracking_model");
         $viaje_id = $this->input->post("viaje_id");
         $tipo_documento = $this->input->post("tipo_documento");
         $tipo_viaje = $this->input->post("tipo_viaje");
@@ -877,9 +878,38 @@ class Ajax extends CI_Controller
         }
         if($tipo_viaje == 3){
             $this->viajes_model->update($viaje_id,$viaje);
+            $id_tracking = $this->tracking_model->add(array(
+                'tipo_tracking' => 'documento',
+                'tipo_entidad' => 'viajes',
+                'id_entidad' => $viaje_id,
+                'created' => date("Y-m-d H:i:s"),
+                'user_id' => $this->session->userdata("id")
+            ));
         }else{
+            $id_tracking = $this->tracking_model->add(array(
+                'tipo_tracking' => 'documento',
+                'tipo_entidad' => 'viajes_proveedores_terceros',
+                'id_entidad' => $viaje_id,
+                'created' => date("Y-m-d H:i:s"),
+                'user_id' => $this->session->userdata("id")
+            ));
             $this->viajes_proveedores_terceros_model->update($viaje_id,$viaje);
         }
+
+        if(array_key_exists('guia_entregada',$viaje)){
+            $this->tracking_model->addDetalle(array(
+                'tracking_id' => $id_tracking,
+                'label' => 'Guía de Despacho',
+                'value' => 'Entregada'
+            ));
+        }else{
+            $this->tracking_model->addDetalle(array(
+                'tracking_id' => $id_tracking,
+                'label' => 'Interchange',
+                'value' => 'Entregada'
+            ));
+        }
+
         $this->load->view("admin/ajax/responce",array(
             'value' => json_encode(array(
                 'status' => 'success'

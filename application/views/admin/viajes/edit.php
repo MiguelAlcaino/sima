@@ -207,9 +207,12 @@
     <div class="bendl"></div>
     <div class="bendr"></div>
 </div>
-
+<script type="text/javascript" src="<?php echo base_url('public/admin/js/activityTracker.js')?>"></script>
 <script type="text/javascript">
-        
+        //Activity Tracking
+        setTipoEntidad("viajes_proveedores_terceros");
+        setIdEntidad(window.location.href.split("/")[7]);
+        setTipoTracking("edit");
         separarNumeroContenedor();
         
         str = $("#fecha_origen").val();

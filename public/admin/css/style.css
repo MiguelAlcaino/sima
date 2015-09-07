@@ -1188,3 +1188,7 @@ td {
 	color: red;
 	font-weight: bold;
 }
+
+.tracking_created_td{
+	vertical-align: top;
+}

@@ -40,7 +40,8 @@ class Tracking_Model extends CI_Model
                                        td.value as 'value'
                                    FROM tracking t
                                    LEFT JOIN tracking_detalle td ON td.tracking_id = t.id
-                                   WHERE t.tipo_entidad = ? AND t.id_entidad = ?",
+                                   WHERE t.tipo_entidad = ? AND t.id_entidad = ?
+                                   ORDER BY t.created DESC",
             array($tipo_entidad, $id_entidad));
 
         return $query->result_array();
